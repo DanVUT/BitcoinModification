@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "bitcoinmod:block/wallet_block_model" }
+  }
+}

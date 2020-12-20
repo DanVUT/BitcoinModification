@@ -1,0 +1,15 @@
+package sk.tuke.bitcoinmod.keyscapability;
+
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import sk.tuke.bitcoinmod.EntryPoint;
+
+@Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class KeysCapabilityCommonEvents {
+    @SubscribeEvent
+    public static void onCommonSetupEvent(FMLCommonSetupEvent event) {
+        CapabilityManager.INSTANCE.register(KeysCapability.class, new KeysCapability.KeysCapabilityStorage(), KeysCapability::new);
+    }
+}

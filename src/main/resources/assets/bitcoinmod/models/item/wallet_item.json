@@ -1,0 +1,13 @@
+{
+  "parent": "builtin/generated",
+  "textures": {
+    "layer0": "bitcoinmod:item/wallet_item"
+  },
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [ 0, -60, 0 ],
+      "translation": [0, 2, 0],
+      "scale": [0.8, 0.8, 0.3]
+    }
+  }
+}
