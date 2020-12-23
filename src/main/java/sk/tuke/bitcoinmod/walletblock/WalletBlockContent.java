@@ -84,10 +84,6 @@ public class WalletBlockContent implements IInventory {
         return canPlayerAccess.test(player);
     }
 
-    public ItemStack getManagedStack(){
-        return this.content.getStackInSlot(1);
-    }
-
     public CompoundNBT serializeNBT(){
         return this.content.serializeNBT();
     }

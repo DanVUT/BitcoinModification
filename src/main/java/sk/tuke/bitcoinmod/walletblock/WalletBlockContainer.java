@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.PlayerInvWrapper;
@@ -70,7 +71,11 @@ public class WalletBlockContainer extends Container {
         return this.walletBlockContent.isUsableByPlayer(playerIn);
     }
 
-    public WalletBlockContent getWalletBlockContent(){
-        return walletBlockContent;
+    public void setGeneratedWalletSlot(ItemStack stack){
+        this.walletBlockContent.setInventorySlotContents(0, stack);
+    }
+
+    public ItemStack getManagedWalletSlot(){
+        return this.walletBlockContent.getStackInSlot(1);
     }
 }

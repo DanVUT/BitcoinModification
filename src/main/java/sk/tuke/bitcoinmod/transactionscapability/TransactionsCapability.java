@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.common.capabilities.Capability;
 import sk.tuke.bitcoinmod.transactionscapability.model.Transaction;
 import sk.tuke.bitcoinmod.transactionscapability.model.TransactionOutput;
@@ -69,6 +70,23 @@ public class TransactionsCapability {
         transactions.put(transaction.getTransactionID(), transaction);
     }
 
+    public void mapTransactions(List<Transaction> transactions){
+        this.transactions.clear();
+        for(Transaction transaction : transactions){
+            this.transactions.put(transaction.getTransactionID(), transaction);
+        }
+    }
+
+    public void markTransactionsAsSpent(List<Tuple<Integer, Integer>> usedTransactions){
+        for(Tuple<Integer, Integer> entry : usedTransactions){
+            this.transactions.get(entry.getA()).getTransactionOutputs().get(entry.getB()).setSpent(true);
+        }
+    }
+
+    public Map<Integer, Transaction> getAllTransactions(){
+        return transactions;
+    }
+
     public Transaction createBaseTransaction(long recipientBitcoinAddress){
         Transaction newTransaction = new Transaction(transactions.size(), 0, recipientBitcoinAddress, true);
         newTransaction.setTransactionOutput(new TransactionOutput(recipientBitcoinAddress, baseAmount, false));
@@ -82,15 +100,15 @@ public class TransactionsCapability {
         return newTransaction;
     }
 
-    public Pair<Transaction, List<Pair<Integer, Integer>>> createNewTransaction(long senderBitcoinAddress, long recipientBitcoinAddress, float bitcoinAmount){
+    public Tuple<Transaction, List<Tuple<Integer, Integer>>> createNewTransaction(long senderBitcoinAddress, long recipientBitcoinAddress, float bitcoinAmount){
         List<Integer> transactionsIDs = getTransactions(senderBitcoinAddress);
         float totalBitcoinSum = getTransactionsSum(transactionsIDs, senderBitcoinAddress);
 
         if(totalBitcoinSum < bitcoinAmount){
-            return null;
+            throw new RuntimeException();
         }
 
-        List<Pair<Integer, Integer>> usedTransactions = new ArrayList<>();
+        List<Tuple<Integer, Integer>> usedTransactions = new ArrayList<>();
         float usedBitcoins = 0.0f;
         for(int id : transactionsIDs){
             Transaction transaction = transactions.get(id);
@@ -99,7 +117,7 @@ public class TransactionsCapability {
                 if(to.getRecipientBitcoinAddress() == senderBitcoinAddress){
                     usedBitcoins += to.getBitcoinAmount();
                     to.setSpent(true);
-                    usedTransactions.add(new Pair<>(id, transaction.getTransactionOutputs().indexOf(to)));
+                    usedTransactions.add(new Tuple<>(id, transaction.getTransactionOutputs().indexOf(to)));
                 }
             }
             if(usedBitcoins >= bitcoinAmount){
@@ -115,7 +133,7 @@ public class TransactionsCapability {
             newTransaction.setTransactionOutput(changeOutput);
         }
 
-        return new Pair<>(newTransaction, usedTransactions);
+        return new Tuple<>(newTransaction, usedTransactions);
     }
 
 
@@ -124,7 +142,7 @@ public class TransactionsCapability {
         private static final String TRANSACTIONS_COUNT_TAG = "TRANSACTIONS_COUNT";
         private static final String BITCOINS_TOTAL_TAG = "BITCOINS_TOTAL";
         private static final String THRESHOLD_TAG = "THRESHOLD";
-        private static final String NEXT_THRESHOLD_TAG = "THRESHOLD";
+        private static final String NEXT_THRESHOLD_TAG = "NEXT_THRESHOLD";
         private static final String BASE_AMOUNT_TAG = "BASE_AMOUNT";
         private static final String TRANSACTION_TAG = "TRANSACTION_";
         private static final String TRANSACTION_ID_TAG = "TRANSACTION_ID";
@@ -150,7 +168,6 @@ public class TransactionsCapability {
             int transactionIndex = 0;
             for(Transaction transaction : instance.transactions.values()){
                 CompoundNBT transactionNbt = new CompoundNBT();
-                nbt.put(TRANSACTION_TAG + transactionIndex, transactionNbt);
 
                 transactionNbt.putInt(TRANSACTION_ID_TAG, transaction.getTransactionID());
                 transactionNbt.putLong(TRANSACTION_SENDER_ADDRESS, transaction.getSenderBitcoinAddress());
@@ -161,15 +178,15 @@ public class TransactionsCapability {
                 int toIndex = 0;
                 for(TransactionOutput to : transaction.getTransactionOutputs()){
                     CompoundNBT outputNbt = new CompoundNBT();
-                    transactionNbt.put(TRANSACTION_OUTPUT_TAG + toIndex, outputNbt);
-
                     outputNbt.putLong(TRANSACTION_OUTPUT_RECIPIENT_ADDRESS, to.getRecipientBitcoinAddress());
                     outputNbt.putFloat(TRANSACTION_OUTPUT_BITCOIN_AMOUNT, to.getBitcoinAmount());
                     outputNbt.putBoolean(TRANSACTION_OUTPUT_IS_CHANGE, to.isChange());
                     outputNbt.putBoolean(TRANSACTION_OUTPUT_IS_SPENT, to.isSpent());
 
+                    transactionNbt.put(TRANSACTION_OUTPUT_TAG + toIndex, outputNbt);
                     toIndex++;
                 }
+                nbt.put(TRANSACTION_TAG + transactionIndex, transactionNbt);
                 transactionIndex++;
             }
             return nbt;

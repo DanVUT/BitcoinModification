@@ -35,7 +35,7 @@ public class GenerateWalletMessageHandlerOnServer {
             KeysCapability keysCapability = player.world.getCapability(KeysCapabilityProvider.CAPABILITY_KEYS, null).orElse(null);
             Tuple<Long,Long> keyPair = keysCapability.generateKeyPair();
             ItemStack newWallet = WalletItem.createWalletItemStack(keyPair.getA(), keyPair.getB());
-            container.getWalletBlockContent().setInventorySlotContents(0, newWallet);
+            container.setGeneratedWalletSlot(newWallet);
         });
 
     }

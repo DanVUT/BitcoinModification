@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 
 public class TransactionsCapabilityProvider implements ICapabilitySerializable<INBT> {
     @CapabilityInject(TransactionsCapability.class)
-    Capability<TransactionsCapability> CAPABILITY_TRANSACTIONS = null;
+    public static Capability<TransactionsCapability> CAPABILITY_TRANSACTIONS = null;
 
     private TransactionsCapability instance = new TransactionsCapability();
 
@@ -36,6 +36,6 @@ public class TransactionsCapabilityProvider implements ICapabilitySerializable<I
     @Override
     public void deserializeNBT(INBT nbt) {
         CompoundNBT compoundNBT = (CompoundNBT) nbt;
-        CAPABILITY_TRANSACTIONS.readNBT(instance, null, compoundNBT);
+        CAPABILITY_TRANSACTIONS.readNBT(instance, null, compoundNBT.getCompound("Transactions"));
     }
 }

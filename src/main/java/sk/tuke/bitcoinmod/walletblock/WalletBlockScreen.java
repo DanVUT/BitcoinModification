@@ -22,7 +22,6 @@ import sk.tuke.bitcoinmod.walletitem.WalletItem;
 public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/wallet_block_gui.png");
     private WalletBlockContainer container;
-    private WalletBlockContent content;
     private KeysCapability keysCapability;
     private static final int GEN_BUTTON_X_POS = 29;
     private static final int GEN_BUTTON_Y_POS = 9;
@@ -44,7 +43,6 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
         xSize = 175;
         ySize = 200;
         this.container = screenContainer;
-        this.content = screenContainer.getWalletBlockContent();
         this.keysCapability = inv.player.getEntityWorld().getCapability(KeysCapabilityProvider.CAPABILITY_KEYS, null).orElse(null);
     }
 

@@ -25,6 +25,7 @@ public class KeysCapability {
             privateKey = (long)(Integer.MAX_VALUE + (Math.random() * Integer.MAX_VALUE));
         } while(allPrivateKeys.contains(privateKey));
         long bitcoinAddress = generateBitcoinAddress(privateKey);
+        allPrivateKeys.add(privateKey);
         return new Tuple<>(privateKey, bitcoinAddress);
     }
 
@@ -42,7 +43,7 @@ public class KeysCapability {
         @Override
         public INBT writeNBT(Capability<KeysCapability> capability, KeysCapability instance, Direction side) {
             Long[] allPrivateKeys = new Long[0];
-            instance.allPrivateKeys.toArray(allPrivateKeys);
+            allPrivateKeys = instance.allPrivateKeys.toArray(allPrivateKeys);
             return new LongArrayNBT(Arrays.asList(allPrivateKeys));
         }
 
