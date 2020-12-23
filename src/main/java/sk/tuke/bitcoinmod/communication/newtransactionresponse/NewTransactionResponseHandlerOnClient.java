@@ -4,7 +4,6 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
-import net.minecraftforge.fml.SidedProvider;
 import net.minecraftforge.fml.network.NetworkEvent;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
@@ -15,7 +14,7 @@ import java.util.function.Supplier;
 public class NewTransactionResponseHandlerOnClient {
     public static void handleMessage(NewTransactionResponseToClient message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
-
+        context.setPacketHandled(true);
         if(context == null){
             return;
         }

@@ -14,6 +14,7 @@ import java.util.function.Supplier;
 public class AllTransactionsMessageHandlerOnClient {
     public static void handleMessage(AllTransactionsMessageToClient message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
+        context.setPacketHandled(true);
 
         if(context == null){
             return;

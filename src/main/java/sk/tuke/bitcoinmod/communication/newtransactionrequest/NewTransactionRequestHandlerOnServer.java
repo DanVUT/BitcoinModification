@@ -7,6 +7,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
+import sk.tuke.bitcoinmod.EntryPoint;
 import sk.tuke.bitcoinmod.communication.CommunicationChannel;
 import sk.tuke.bitcoinmod.communication.newtransactionresponse.NewTransactionResponseToClient;
 import sk.tuke.bitcoinmod.keyscapability.KeysCapability;
@@ -21,24 +22,20 @@ import java.util.function.Supplier;
 public class NewTransactionRequestHandlerOnServer {
     public static void handleMessage(final NewTransactionRequestToServer message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
-        if(context == null){
-            return;
-        }
+        context.setPacketHandled(true);
 
-        if(context.getDirection().getReceptionSide() != LogicalSide.SERVER){
+        if(!context.getDirection().getReceptionSide().isServer()){
             return;
         }
 
         if(!message.isValid()){
             return;
         }
-
         context.enqueueWork(() ->{
             World world = context.getSender().world;
             KeysCapability keysCapability = world.getCapability(KeysCapabilityProvider.CAPABILITY_KEYS, null).orElse(null);
             TransactionsCapability transactionsCapability = world.getCapability(TransactionsCapabilityProvider.CAPABILITY_TRANSACTIONS, null).orElse(null);
-
-            if(!keysCapability.validateKeyPair(message.getSenderPrivateKey(), message.getRecipientBitcoinAddress())){
+            if(!keysCapability.validateKeyPair(message.getSenderPrivateKey(), message.getSenderBitcoinAddress())){
                 return;
             }
 

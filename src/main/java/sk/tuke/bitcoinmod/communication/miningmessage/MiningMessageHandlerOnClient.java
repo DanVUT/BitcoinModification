@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 public class MiningMessageHandlerOnClient {
     public static void handleMessage(MiningMessageToClient message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
-
+        context.setPacketHandled(true);
         if(context == null){
             return;
         }

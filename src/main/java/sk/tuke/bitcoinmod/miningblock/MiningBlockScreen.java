@@ -52,6 +52,9 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
         fontRenderer.drawString("Wallet", WALLET_TEXT_X_POS, WALLET_TEXT_Y_POS, Color.BLACK.getRGB());
         fontRenderer.drawString("Diamonds", DIAMONDS_TEXT_X_POS, DIAMONDS_TEXT_Y_POS, Color.BLACK.getRGB());
 
+        if(this.container.getWalletItemStack().isEmpty()){
+            return;
+        }
 
         fontRenderer.drawString("BTC: " + getBitcoinAmount(), BITCOIN_AMOUNT_TEXT_X_POS, BITCOIN_AMOUNT_TEXT_Y_POS, Color.BLACK.getRGB());
     }

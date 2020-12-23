@@ -31,7 +31,7 @@ public class CommunicationChannel {
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event){
         SIMPLECHANNEL = NetworkRegistry.newSimpleChannel(
-                new ResourceLocation(EntryPoint.MODID, "mainchannel"),
+                new ResourceLocation(EntryPoint.MODID, "mainchanel"),
                 () -> MESSAGE_PROTOCOL_VERSION,
                 MESSAGE_PROTOCOL_VERSION::equals,
                 MESSAGE_PROTOCOL_VERSION::equals
