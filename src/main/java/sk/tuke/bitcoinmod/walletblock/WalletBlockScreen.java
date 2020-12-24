@@ -31,6 +31,7 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
     private WalletBlockContainer container;
     private KeysCapability keysCapability;
     private TransactionsCapability transactionsCapability;
+    private float bitcoinAmount;
     private static final int GEN_BUTTON_X_POS = 29;
     private static final int GEN_BUTTON_Y_POS = 9;
 
@@ -57,6 +58,7 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
         this.container = screenContainer;
         this.keysCapability = inv.player.getEntityWorld().getCapability(KeysCapabilityProvider.CAPABILITY_KEYS, null).orElse(null);
         this.transactionsCapability = inv.player.getEntityWorld().getCapability(TransactionsCapabilityProvider.CAPABILITY_TRANSACTIONS, null).orElse(null);
+        this.bitcoinAmount = 0.0f;
     }
 
     @Override
@@ -89,8 +91,7 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
         if(managedWallet.isEmpty()){
             return;
         }
-        Tuple<Long, Long> keyPair = WalletItem.getKeyPairFromWalletItemStack(managedWallet);
-        fontRenderer.drawString("BTC: " + transactionsCapability.getTransactionsSum(keyPair.getB()), BITCOIN_BALANCE_TEXT_X_POS, BITCOIN_BALANCE_TEXT_Y_POS, Color.BLACK.getRGB());
+        fontRenderer.drawString("BTC: " + bitcoinAmount, BITCOIN_BALANCE_TEXT_X_POS, BITCOIN_BALANCE_TEXT_Y_POS, Color.BLACK.getRGB());
     }
 
     @Override
@@ -102,19 +103,6 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
         this.blit(edgeSpacingX, edgeSpacingY, 0, 0, this.xSize, this.ySize);
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-        if(this.container.getManagedWalletSlot().isEmpty()){
-            this.sendButton.active = false;
-            this.amountTextField.setEnabled(false);
-            this.addressTextField.setEnabled(false);
-        } else {
-            this.sendButton.active = true;
-            this.amountTextField.setEnabled(true);
-            this.addressTextField.setEnabled(true);
-        }
-    }
 
     @Override
     public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_) {
@@ -171,5 +159,29 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
         addButton(sendButton);
     }
 
+    private int ticks = 0;
+    @Override
+    public void tick() {
+        super.tick();
+        if(this.container.getManagedWalletSlot().isEmpty()){
+            this.sendButton.active = false;
+            this.amountTextField.setEnabled(false);
+            this.addressTextField.setEnabled(false);
+        } else {
+            this.sendButton.active = true;
+            this.amountTextField.setEnabled(true);
+            this.addressTextField.setEnabled(true);
+        }
 
+        if((ticks % 10) == 0){
+            this.bitcoinAmount = getBitcoinAmount();
+        }
+        ticks++;
+    }
+
+
+    private float getBitcoinAmount(){
+        Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(container.getManagedWalletSlot());
+        return transactionsCapability.getTransactionsSum(pair.getB());
+    }
 }

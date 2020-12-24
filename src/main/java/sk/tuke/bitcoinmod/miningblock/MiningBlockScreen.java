@@ -3,6 +3,7 @@ package sk.tuke.bitcoinmod.miningblock;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
@@ -17,6 +18,7 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/mining_block_gui.png");
     private TransactionsCapability transactionsCapability;
     private MiningBlockContainer miningBlockContainer;
+    private float bitcoinAmount;
     private static int WALLET_TEXT_X_POS = 29;
     private static int WALLET_TEXT_Y_POS = 17;
     private static int DIAMONDS_TEXT_X_POS = 110;
@@ -30,6 +32,7 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
         this.ySize = 165;
         transactionsCapability = inv.player.world.getCapability(TransactionsCapabilityProvider.CAPABILITY_TRANSACTIONS, null).orElse(null);
         miningBlockContainer = screenContainer;
+        bitcoinAmount = 0.0f;
     }
 
     private float getBitcoinAmount(){
@@ -56,12 +59,25 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
             return;
         }
 
-        fontRenderer.drawString("BTC: " + getBitcoinAmount(), BITCOIN_AMOUNT_TEXT_X_POS, BITCOIN_AMOUNT_TEXT_Y_POS, Color.BLACK.getRGB());
+        fontRenderer.drawString("BTC: " + this.bitcoinAmount, BITCOIN_AMOUNT_TEXT_X_POS, BITCOIN_AMOUNT_TEXT_Y_POS, Color.BLACK.getRGB());
     }
 
     @Override
     public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
+        this.renderBackground();
         super.render(p_render_1_, p_render_2_, p_render_3_);
         this.renderHoveredToolTip(p_render_1_, p_render_2_);
     }
+
+    private int ticks = 0;
+    @Override
+    public void tick() {
+        super.tick();
+        if((ticks%40) == 0){
+            this.bitcoinAmount = getBitcoinAmount();
+        }
+        this.ticks++;
+    }
+
+
 }
