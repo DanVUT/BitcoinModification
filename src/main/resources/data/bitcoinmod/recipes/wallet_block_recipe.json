@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "",
+  "ingredients": [
+    {"item":"minecraft:paper"},
+    {"item":"minecraft:paper"}
+  ],
+  "result": {
+    "item": "bitcoinmod:wallet_block"
+  }
+}

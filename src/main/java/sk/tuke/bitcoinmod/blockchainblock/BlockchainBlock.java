@@ -16,7 +16,7 @@ import sk.tuke.bitcoinmod.EntryPoint;
 
 public class BlockchainBlock extends Block {
     public BlockchainBlock() {
-        super(Block.Properties.create(Material.IRON));
+        super(Block.Properties.create(Material.IRON).hardnessAndResistance(1.15f));
         this.setRegistryName(EntryPoint.MODID, "blockchain_block");
     }
 

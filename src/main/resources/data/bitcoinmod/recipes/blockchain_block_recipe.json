@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "",
+  "ingredients": [
+    {"item":"minecraft:book"},
+    {"item":"minecraft:book"}
+  ],
+  "result": {
+    "item": "bitcoinmod:blockchain_block"
+  }
+}

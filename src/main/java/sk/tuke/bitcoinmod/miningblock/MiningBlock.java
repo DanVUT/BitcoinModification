@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 public class MiningBlock extends ContainerBlock {
     public MiningBlock() {
-        super(Properties.create(Material.IRON));
+        super(Properties.create(Material.IRON).hardnessAndResistance(1.15f));
         this.setRegistryName(EntryPoint.MODID, "mining_block");
     }
 

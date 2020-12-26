@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
 
 public class WalletBlock extends ContainerBlock {
     public WalletBlock() {
-        super(Properties.create(Material.IRON));
+        super(Properties.create(Material.IRON).hardnessAndResistance(1.15f));
         this.setRegistryName(EntryPoint.MODID, "wallet_block");
     }
     @Override
