@@ -25,7 +25,7 @@ public class BlockchainBlockScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        this.listWidget = new ListWidget(this.minecraft, transactionsCapability.getAllTransactions(), this.width, this.height, 32, this.height - 32, 70);
+        this.listWidget = new ListWidget(this.minecraft, transactionsCapability.getAllTransactions(), this.width, this.height, 32, this.height - 32, 80);
         this.children.add(listWidget);
     }
 

@@ -57,6 +57,13 @@ public class MiningBlock extends ContainerBlock {
 
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if(state.getBlock() != newState.getBlock()){
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof MiningBlockTileEntity){
+                MiningBlockTileEntity miningBlockTileEntity = (MiningBlockTileEntity) tileEntity;
+                miningBlockTileEntity.dropAllContents(worldIn, pos);
+            }
+        }
         super.onReplaced(state, worldIn, pos, newState, isMoving);
     }
 

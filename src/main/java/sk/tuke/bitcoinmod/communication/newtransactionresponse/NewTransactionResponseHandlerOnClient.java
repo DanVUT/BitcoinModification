@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 import net.minecraftforge.fml.network.NetworkEvent;
+import sk.tuke.bitcoinmod.helpers.ScreenRefresher;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 
@@ -36,6 +37,7 @@ public class NewTransactionResponseHandlerOnClient {
 
             transactionsCapability.addTransaction(message.getNewTransaction());
             transactionsCapability.markTransactionsAsSpent(message.getUsedTransactions());
+            ScreenRefresher.refreshScreen();
         });
     }
 }

@@ -18,6 +18,7 @@ import sk.tuke.bitcoinmod.EntryPoint;
 import sk.tuke.bitcoinmod.communication.CommunicationChannel;
 import sk.tuke.bitcoinmod.communication.generatewallet.GenerateWalletMessageToServer;
 import sk.tuke.bitcoinmod.communication.newtransactionrequest.NewTransactionRequestToServer;
+import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 import sk.tuke.bitcoinmod.keyscapability.KeysCapability;
 import sk.tuke.bitcoinmod.keyscapability.KeysCapabilityProvider;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
@@ -26,7 +27,7 @@ import sk.tuke.bitcoinmod.walletitem.WalletItem;
 
 import java.awt.*;
 
-public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
+public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> implements IRefreshable {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/wallet_block_gui.png");
     private WalletBlockContainer container;
     private KeysCapability keysCapability;
@@ -154,6 +155,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
 
 
             CommunicationChannel.SIMPLECHANNEL.sendToServer(new NewTransactionRequestToServer(senderPrivateKey, senderAddress, recipientAddress, bitcoinAmount));
+
+            this.amountTextField.setText("");
+            this.addressTextField.setText("");
         });
         sendButton.visible = true;
         addButton(sendButton);
@@ -173,15 +177,16 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> {
             this.addressTextField.setEnabled(true);
         }
 
-        if((ticks % 10) == 0){
-            this.bitcoinAmount = getBitcoinAmount();
+        if((ticks % 200) == 0){
+            refresh();
         }
         ticks++;
     }
 
 
-    private float getBitcoinAmount(){
+    @Override
+    public void refresh() {
         Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(container.getManagedWalletSlot());
-        return transactionsCapability.getTransactionsSum(pair.getB());
+        this.bitcoinAmount = transactionsCapability.getTransactionsSum(pair.getB());
     }
 }

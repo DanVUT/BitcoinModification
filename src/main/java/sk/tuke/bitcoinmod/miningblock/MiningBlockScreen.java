@@ -8,13 +8,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
 import sk.tuke.bitcoinmod.EntryPoint;
+import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 import sk.tuke.bitcoinmod.walletitem.WalletItem;
 
 import java.awt.*;
 
-public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
+public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> implements IRefreshable {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/mining_block_gui.png");
     private TransactionsCapability transactionsCapability;
     private MiningBlockContainer miningBlockContainer;
@@ -35,10 +36,6 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
         bitcoinAmount = 0.0f;
     }
 
-    private float getBitcoinAmount(){
-        Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(miningBlockContainer.getWalletItemStack());
-        return transactionsCapability.getTransactionsSum(pair.getB());
-    }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -73,11 +70,16 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> {
     @Override
     public void tick() {
         super.tick();
-        if((ticks%40) == 0){
-            this.bitcoinAmount = getBitcoinAmount();
+        if((ticks%200) == 0){
+            this.refresh();
         }
         this.ticks++;
     }
 
 
+    @Override
+    public void refresh() {
+        Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(miningBlockContainer.getWalletItemStack());
+        this.bitcoinAmount = transactionsCapability.getTransactionsSum(pair.getB());
+    }
 }

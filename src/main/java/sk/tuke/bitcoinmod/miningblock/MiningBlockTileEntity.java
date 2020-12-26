@@ -2,6 +2,7 @@ package sk.tuke.bitcoinmod.miningblock;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -9,9 +10,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -81,6 +83,10 @@ public class MiningBlockTileEntity extends TileEntity implements INamedContainer
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    public void dropAllContents(World world, BlockPos blockPos){
+        InventoryHelper.dropInventoryItems(world, blockPos, this.content);
     }
 
     public ItemStack getWalletItemStack(){

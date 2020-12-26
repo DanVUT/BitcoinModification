@@ -47,27 +47,30 @@ public class ListWidget extends ExtendedList<ListWidget.ListWidgetEntry> {
         @Override
         public void render(int index, int rowTop, int rowLeft, int rowWidth, int rowHeight, int mouseX, int mouseY, boolean isMouseOverThisEntry , float p_render_9_) {
             FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
-            fontRenderer.drawString("Transaction ID: " + transaction.getTransactionID(), rowLeft, rowTop, Color.WHITE.getRGB());
-            rowTop += transaction.isBaseTransaction() ? 10 : 15;
+            int yPos = rowTop;
+            fontRenderer.drawString("Transaction ID: " + transaction.getTransactionID(), rowLeft, yPos, Color.WHITE.getRGB());
+            yPos += transaction.isBaseTransaction() ? 10 : 15;
             if(transaction.isBaseTransaction()){
-
+                fontRenderer.drawString("Base Transaction", rowLeft, yPos, Color.GREEN.getRGB());
+                yPos += 15;
             }
 
             long recipientPublicKey = transaction.getTransactionOutputs().get(0).getRecipientBitcoinAddress();
-            fontRenderer.drawString("Recipient: " + Long.toHexString(recipientPublicKey), rowLeft, rowTop, Color.WHITE.getRGB());
-            rowTop += 10;
-            fontRenderer.drawString("Amount: " + transaction.getTransactionOutputs().get(0).getBitcoinAmount(), rowLeft, rowTop, Color.WHITE.getRGB());
-            fontRenderer.drawString("Spent: " + transaction.getTransactionOutputs().get(0).isSpent(), rowLeft + 110, rowTop, transaction.getTransactionOutputs().get(0).isSpent() ? Color.RED.getRGB() : Color.green.getRGB());
-            rowTop += 15;
+            fontRenderer.drawString("Recipient: " + Long.toHexString(recipientPublicKey), rowLeft, yPos, Color.WHITE.getRGB());
+            yPos += 10;
+            fontRenderer.drawString("Amount: " + transaction.getTransactionOutputs().get(0).getBitcoinAmount(), rowLeft, yPos, Color.WHITE.getRGB());
+            fontRenderer.drawString(transaction.getTransactionOutputs().get(0).isSpent() ? "Spent" : "Available", rowLeft + 110, yPos, transaction.getTransactionOutputs().get(0).isSpent() ? Color.RED.getRGB() : Color.green.getRGB());
+            yPos += 20;
             if(transaction.getTransactionOutputs().size() == 2){
                 long changePublicKey = transaction.getTransactionOutputs().get(1).getRecipientBitcoinAddress();
-                fontRenderer.drawString("Change: " + Long.toHexString(changePublicKey), rowLeft, rowTop, Color.WHITE.getRGB());
-                rowTop += 10;
-                fontRenderer.drawString("Amount: " + transaction.getTransactionOutputs().get(1).getBitcoinAmount(), rowLeft, rowTop, Color.WHITE.getRGB());
-                fontRenderer.drawString("Spent: " + transaction.getTransactionOutputs().get(1).isSpent(), rowLeft + 110, rowTop, transaction.getTransactionOutputs().get(1).isSpent() ? Color.RED.getRGB() : Color.green.getRGB());
+                fontRenderer.drawString("Change: " + Long.toHexString(changePublicKey), rowLeft, yPos, Color.WHITE.getRGB());
+                yPos += 10;
+                fontRenderer.drawString("Amount: " + transaction.getTransactionOutputs().get(1).getBitcoinAmount(), rowLeft, yPos, Color.WHITE.getRGB());
+                fontRenderer.drawString(transaction.getTransactionOutputs().get(1).isSpent() ? "Spent" : "Available", rowLeft + 110, yPos, transaction.getTransactionOutputs().get(1).isSpent() ? Color.RED.getRGB() : Color.green.getRGB());
             }
-            rowTop += 10;
-            fontRenderer.drawString("________________________________________________", rowLeft, rowTop, Color.WHITE.getRGB());
+
+            int linePos = rowTop + rowHeight - 10;
+            fontRenderer.drawString("________________________________________________", rowLeft, linePos, Color.WHITE.getRGB());
 
         }
     }

@@ -1,10 +1,13 @@
 package sk.tuke.bitcoinmod.walletblock;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.ItemStackHandler;
+import sk.tuke.bitcoinmod.helpers.ScreenRefresher;
+import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 
 import java.util.function.Predicate;
 
@@ -77,6 +80,7 @@ public class WalletBlockContent implements IInventory {
     @Override
     public void markDirty() {
         markDirty.run();
+        ScreenRefresher.refreshScreen();
     }
 
     @Override

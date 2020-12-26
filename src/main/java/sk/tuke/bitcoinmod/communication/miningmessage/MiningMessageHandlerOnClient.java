@@ -6,6 +6,7 @@ import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 import net.minecraftforge.fml.network.NetworkEvent;
 import sk.tuke.bitcoinmod.EntryPoint;
+import sk.tuke.bitcoinmod.helpers.ScreenRefresher;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 
@@ -33,6 +34,7 @@ public class MiningMessageHandlerOnClient {
             World world = clientWorld.get();
             TransactionsCapability transactionsCapability = world.getCapability(TransactionsCapabilityProvider.CAPABILITY_TRANSACTIONS, null).orElse(null);
             transactionsCapability.addTransaction(message.getBaseTransaction());
+            ScreenRefresher.refreshScreen();
         });
     }
 }

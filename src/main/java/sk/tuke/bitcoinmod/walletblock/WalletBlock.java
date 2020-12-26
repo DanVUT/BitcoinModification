@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import sk.tuke.bitcoinmod.EntryPoint;
+import sk.tuke.bitcoinmod.miningblock.MiningBlockTileEntity;
 
 import javax.annotation.Nullable;
 
@@ -56,8 +57,16 @@ public class WalletBlock extends ContainerBlock {
 
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+        if(state.getBlock() != newState.getBlock()){
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof WalletBlockTileEntity){
+                WalletBlockTileEntity walletBlockTileEntity = (WalletBlockTileEntity) tileEntity;
+                walletBlockTileEntity.dropAllContents(worldIn, pos);
+            }
+        }
         super.onReplaced(state, worldIn, pos, newState, isMoving);
     }
+
 
     @Override
     public BlockRenderType getRenderType(BlockState state) {

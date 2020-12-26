@@ -2,14 +2,17 @@ package sk.tuke.bitcoinmod.walletblock;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import sk.tuke.bitcoinmod.EntryPoint;
 
 import javax.annotation.Nullable;
@@ -30,6 +33,10 @@ public class WalletBlockTileEntity extends TileEntity implements INamedContainer
         final double Z_CENTRE_OFFSET = 0.5;
         final double MAXIMUM_DISTANCE_SQ = 8.0 * 8.0;
         return player.getDistanceSq(pos.getX() + X_CENTRE_OFFSET, pos.getY() + Y_CENTRE_OFFSET, pos.getZ() + Z_CENTRE_OFFSET) < MAXIMUM_DISTANCE_SQ;
+    }
+
+    public void dropAllContents(World world, BlockPos blockPos){
+        InventoryHelper.dropInventoryItems(world, blockPos, this.walletBlockContent);
     }
 
     @Override

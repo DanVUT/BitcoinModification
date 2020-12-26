@@ -1,11 +1,14 @@
 package sk.tuke.bitcoinmod.miningblock;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.ItemStackHandler;
+import sk.tuke.bitcoinmod.helpers.ScreenRefresher;
+import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 
 import java.util.function.Predicate;
 
@@ -66,6 +69,7 @@ public class MiningBlockContent implements IInventory {
     @Override
     public void markDirty() {
         this.markDirty.run();
+        ScreenRefresher.refreshScreen();
     }
 
     @Override
