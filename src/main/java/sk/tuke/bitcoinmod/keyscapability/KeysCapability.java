@@ -22,7 +22,7 @@ public class KeysCapability {
     public Tuple<Long,Long> generateKeyPair(){
         long privateKey;
         do {
-            privateKey = (long)(Integer.MAX_VALUE + (Math.random() * Integer.MAX_VALUE));
+            privateKey = (long)(Integer.MAX_VALUE + (Math.random() * (2 * (long)Integer.MAX_VALUE)));
         } while(allPrivateKeys.contains(privateKey));
         long bitcoinAddress = generateBitcoinAddress(privateKey);
         allPrivateKeys.add(privateKey);
@@ -30,7 +30,7 @@ public class KeysCapability {
     }
 
     private long generateBitcoinAddress(long privateKey){
-        return privateKey >> 2;
+        return privateKey - 42;
     }
 
     public boolean validateKeyPair(long privateKey, long bitcoinAddress){

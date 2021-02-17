@@ -12,6 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import sk.tuke.bitcoinmod.EntryPoint;
 
 public class BlockchainBlock extends Block {
@@ -21,6 +23,7 @@ public class BlockchainBlock extends Block {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(!worldIn.isRemote){
             return ActionResultType.SUCCESS;

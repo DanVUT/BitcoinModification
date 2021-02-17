@@ -3,6 +3,8 @@ package sk.tuke.bitcoinmod.blockchainblock;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.LogicalSidedProvider;
 import sk.tuke.bitcoinmod.listwidget.ListWidget;
@@ -11,6 +13,7 @@ import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 
 import java.util.Optional;
 
+@OnlyIn(Dist.CLIENT)
 public class BlockchainBlockScreen extends Screen {
     private ListWidget listWidget;
     private TransactionsCapability transactionsCapability;
@@ -25,7 +28,7 @@ public class BlockchainBlockScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        this.listWidget = new ListWidget(this.minecraft, transactionsCapability.getAllTransactions(), this.width, this.height, 32, this.height - 32, 80);
+        this.listWidget = new ListWidget(this.minecraft, transactionsCapability.getAllTransactions(), this.width, this.height, 32, this.height - 32, 85);
         this.children.add(listWidget);
     }
 

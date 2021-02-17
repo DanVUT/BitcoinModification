@@ -80,7 +80,6 @@ public class WalletBlockContent implements IInventory {
     @Override
     public void markDirty() {
         markDirty.run();
-        ScreenRefresher.refreshScreen();
     }
 
     @Override

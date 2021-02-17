@@ -69,7 +69,6 @@ public class MiningBlockContent implements IInventory {
     @Override
     public void markDirty() {
         this.markDirty.run();
-        ScreenRefresher.refreshScreen();
     }
 
     @Override

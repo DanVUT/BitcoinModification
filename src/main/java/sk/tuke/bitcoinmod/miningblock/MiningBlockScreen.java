@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import sk.tuke.bitcoinmod.EntryPoint;
 import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
@@ -14,7 +16,7 @@ import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 import sk.tuke.bitcoinmod.walletitem.WalletItem;
 
 import java.awt.*;
-
+@OnlyIn(Dist.CLIENT)
 public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> implements IRefreshable {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/mining_block_gui.png");
     private TransactionsCapability transactionsCapability;
@@ -66,15 +68,15 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> imp
         this.renderHoveredToolTip(p_render_1_, p_render_2_);
     }
 
-    private int ticks = 0;
-    @Override
-    public void tick() {
-        super.tick();
-        if((ticks%200) == 0){
-            this.refresh();
-        }
-        this.ticks++;
-    }
+//    private int ticks = 0;
+//    @Override
+//    public void tick() {
+//        super.tick();
+//        if((ticks%200) == 0){
+//            this.refresh();
+//        }
+//        this.ticks++;
+//    }
 
 
     @Override

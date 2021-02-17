@@ -9,7 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import sk.tuke.bitcoinmod.EntryPoint;
 
 @OnlyIn(Dist.CLIENT)
-@Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class WalletBlockClientEvents {
     @SubscribeEvent
     public static void onClientSetupEvent(FMLClientSetupEvent event){

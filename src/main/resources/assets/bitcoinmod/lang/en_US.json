@@ -2,5 +2,5 @@
   "block.bitcoinmod.wallet_block": "Bitcoin Wallet Block",
   "block.bitcoinmod.mining_block": "Bitcoin Mining Block",
   "block.bitcoinmod.blockchain_block": "Blockchain Block",
-  "item.bitcoinmod.wallet_item": "Bitcoin Wallet Key Pair"
+  "item.bitcoinmod.wallet_item": "Bitcoin Key Pair"
 }

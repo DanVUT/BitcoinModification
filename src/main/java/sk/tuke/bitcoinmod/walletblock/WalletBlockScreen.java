@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkInstance;
 import sk.tuke.bitcoinmod.EntryPoint;
@@ -27,6 +29,7 @@ import sk.tuke.bitcoinmod.walletitem.WalletItem;
 
 import java.awt.*;
 
+@OnlyIn(Dist.CLIENT)
 public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> implements IRefreshable {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/wallet_block_gui.png");
     private WalletBlockContainer container;
@@ -47,6 +50,7 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
 
     private static final int BITCOIN_BALANCE_TEXT_X_POS = 30;
     private static final int BITCOIN_BALANCE_TEXT_Y_POS = 42;
+
 
     private TextFieldWidget amountTextField;
     private TextFieldWidget addressTextField;
@@ -73,13 +77,11 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
     public void render(int mouseX, int mouseY, float partialTicks) {
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
-
+        this.amountTextField.render(mouseX, mouseY, partialTicks);
+        this.addressTextField.render(mouseX, mouseY, partialTicks);
         for(Widget button : buttons){
             button.render(mouseX, mouseY, partialTicks);
         }
-
-        this.amountTextField.render(mouseX, mouseY, partialTicks);
-        this.addressTextField.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
     }
 
@@ -129,7 +131,7 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
     }
 
     private void setButtons(){
-        Button generateButton = new Button(GEN_BUTTON_X_POS + this.guiLeft, GEN_BUTTON_Y_POS + this.guiTop, 100, 20, "Generate New Pair", (but) ->{
+        Button generateButton = new Button(GEN_BUTTON_X_POS + this.guiLeft, GEN_BUTTON_Y_POS + this.guiTop, 120, 20, "New Bitcoin Key Pair", (but) ->{
             CommunicationChannel.SIMPLECHANNEL.sendToServer(new GenerateWalletMessageToServer());
         });
         generateButton.visible = true;
@@ -177,10 +179,10 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
             this.addressTextField.setEnabled(true);
         }
 
-        if((ticks % 200) == 0){
-            refresh();
-        }
-        ticks++;
+//        if((ticks % 200) == 0){
+//            refresh();
+//        }
+//        ticks++;
     }
 
 

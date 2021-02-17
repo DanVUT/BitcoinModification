@@ -1,8 +1,14 @@
 package sk.tuke.bitcoinmod.walletitem;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.LogicalSidedProvider;
+import sk.tuke.bitcoinmod.EntryPoint;
+import sk.tuke.bitcoinmod.helpers.ScreenRefresher;
 
 public class WalletItemSlot extends Slot {
     private boolean canPut;
@@ -18,5 +24,12 @@ public class WalletItemSlot extends Slot {
         } else{
             return false;
         }
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void onSlotChanged() {
+        super.onSlotChanged();
+        ScreenRefresher.refreshScreen();
     }
 }

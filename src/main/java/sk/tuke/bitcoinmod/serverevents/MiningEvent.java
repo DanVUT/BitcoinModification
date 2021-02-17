@@ -72,7 +72,7 @@ public class MiningEvent {
             return;
         }
         List<Integer> raffleList = getRaffleList(miningTileEntities);
-        int pickedNumber = new Random().nextInt(raffleList.size());
+        int pickedNumber = raffleList.get(new Random().nextInt(raffleList.size()));
         MiningBlockTileEntity pickedTE = miningTileEntities.get(pickedNumber);
         Tuple<Long, Long> keyPair = WalletItem.getKeyPairFromWalletItemStack(pickedTE.getWalletItemStack());
         Transaction transaction = transactionsCapability.createBaseTransaction(keyPair.getB());

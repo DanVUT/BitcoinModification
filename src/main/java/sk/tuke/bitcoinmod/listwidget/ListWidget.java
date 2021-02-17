@@ -49,11 +49,13 @@ public class ListWidget extends ExtendedList<ListWidget.ListWidgetEntry> {
             FontRenderer fontRenderer = Minecraft.getInstance().fontRenderer;
             int yPos = rowTop;
             fontRenderer.drawString("Transaction ID: " + transaction.getTransactionID(), rowLeft, yPos, Color.WHITE.getRGB());
-            yPos += transaction.isBaseTransaction() ? 10 : 15;
+            yPos += 10;
             if(transaction.isBaseTransaction()){
-                fontRenderer.drawString("Base Transaction", rowLeft, yPos, Color.GREEN.getRGB());
-                yPos += 15;
+                fontRenderer.drawString("Coinbase Transaction", rowLeft, yPos, Color.GREEN.getRGB());
+            } else {
+                fontRenderer.drawString("Sender: " + Long.toHexString(transaction.getSenderBitcoinAddress()), rowLeft, yPos, Color.YELLOW.getRGB());
             }
+            yPos += 15;
 
             long recipientPublicKey = transaction.getTransactionOutputs().get(0).getRecipientBitcoinAddress();
             fontRenderer.drawString("Recipient: " + Long.toHexString(recipientPublicKey), rowLeft, yPos, Color.WHITE.getRGB());
