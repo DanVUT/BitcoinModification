@@ -165,7 +165,6 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         addButton(sendButton);
     }
 
-    private int ticks = 0;
     @Override
     public void tick() {
         super.tick();
@@ -178,11 +177,16 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
             this.amountTextField.setEnabled(true);
             this.addressTextField.setEnabled(true);
         }
-
-//        if((ticks % 200) == 0){
-//            refresh();
-//        }
-//        ticks++;
+        if(amountTextField.isFocused() || !amountTextField.getText().equals("")){
+            amountTextField.setSuggestion("");
+        } else {
+            amountTextField.setSuggestion("Bitcoin Amount");
+        }
+        if(addressTextField.isFocused() || !addressTextField.getText().equals("")){
+            addressTextField.setSuggestion("");
+        } else {
+            addressTextField.setSuggestion("Recipient Address");
+        }
     }
 
 
