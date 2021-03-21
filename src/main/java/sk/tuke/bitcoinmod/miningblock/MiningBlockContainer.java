@@ -74,6 +74,11 @@ public class MiningBlockContainer extends Container {
         return this.content.isUsableByPlayer(playerIn);
     }
 
+    @Override
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+        return ItemStack.EMPTY;
+    }
+
     public ItemStack getWalletItemStack(){
         return this.content.getStackInSlot(0);
     }

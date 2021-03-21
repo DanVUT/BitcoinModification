@@ -71,6 +71,11 @@ public class WalletBlockContainer extends Container {
         return this.walletBlockContent.isUsableByPlayer(playerIn);
     }
 
+    @Override
+    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+        return ItemStack.EMPTY;
+    }
+
     public void setGeneratedWalletSlot(ItemStack stack){
         this.walletBlockContent.setInventorySlotContents(0, stack);
     }
