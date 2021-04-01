@@ -30,7 +30,7 @@ public class KeysCapability {
     }
 
     private long generateBitcoinAddress(long privateKey){
-        return privateKey - 42;
+        return (long)(privateKey * 1.42);
     }
 
     public boolean validateKeyPair(long privateKey, long bitcoinAddress){
