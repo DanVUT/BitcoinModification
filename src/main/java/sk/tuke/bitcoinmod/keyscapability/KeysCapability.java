@@ -5,12 +5,10 @@ import net.minecraft.nbt.LongArrayNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Tuple;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Random;
 
 public class KeysCapability {
     public HashSet<Long> allPrivateKeys;

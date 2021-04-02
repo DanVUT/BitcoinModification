@@ -1,7 +1,5 @@
 package sk.tuke.bitcoinmod.transactionscapability;
 
-import com.google.common.collect.Collections2;
-import javafx.util.Pair;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.util.Direction;

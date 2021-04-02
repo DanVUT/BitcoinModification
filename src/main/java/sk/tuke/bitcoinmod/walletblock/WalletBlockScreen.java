@@ -1,7 +1,6 @@
 package sk.tuke.bitcoinmod.walletblock;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -14,8 +13,6 @@ import net.minecraft.util.Tuple;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.NetworkInstance;
 import sk.tuke.bitcoinmod.EntryPoint;
 import sk.tuke.bitcoinmod.communication.CommunicationChannel;
 import sk.tuke.bitcoinmod.communication.generatewallet.GenerateWalletMessageToServer;

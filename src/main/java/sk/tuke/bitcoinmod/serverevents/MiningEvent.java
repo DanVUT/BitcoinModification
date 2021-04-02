@@ -1,12 +1,10 @@
 package sk.tuke.bitcoinmod.serverevents;
 
-import com.google.common.collect.Collections2;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,7 +12,6 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import sk.tuke.bitcoinmod.EntryPoint;
 import sk.tuke.bitcoinmod.communication.CommunicationChannel;
 import sk.tuke.bitcoinmod.communication.miningmessage.MiningMessageToClient;
-import sk.tuke.bitcoinmod.communication.newtransactionresponse.NewTransactionResponseToClient;
 import sk.tuke.bitcoinmod.miningblock.MiningBlockTileEntity;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;

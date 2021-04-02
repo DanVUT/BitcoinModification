@@ -7,7 +7,6 @@ import sk.tuke.bitcoinmod.transactionscapability.model.Transaction;
 
 import java.awt.*;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 public class ListWidget extends ExtendedList<ListWidget.ListWidgetEntry> {

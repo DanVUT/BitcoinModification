@@ -1,6 +1,5 @@
 package sk.tuke.bitcoinmod.walletblock;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
@@ -17,7 +16,6 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 import sk.tuke.bitcoinmod.EntryPoint;
-import sk.tuke.bitcoinmod.miningblock.MiningBlockTileEntity;
 
 import javax.annotation.Nullable;
 

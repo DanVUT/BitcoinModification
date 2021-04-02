@@ -1,6 +1,5 @@
 package sk.tuke.bitcoinmod.blockchainblock;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -16,6 +15,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import sk.tuke.bitcoinmod.EntryPoint;
 
+
+/**
+ * Trieda implementujuca chovanie Blockchain Blocku
+ */
 public class BlockchainBlock extends Block {
     public BlockchainBlock() {
         super(Block.Properties.create(Material.IRON).hardnessAndResistance(1.15f));

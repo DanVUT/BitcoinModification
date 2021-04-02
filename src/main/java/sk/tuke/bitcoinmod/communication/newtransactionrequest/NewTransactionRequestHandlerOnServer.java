@@ -1,6 +1,5 @@
 package sk.tuke.bitcoinmod.communication.newtransactionrequest;
 
-import javafx.util.Pair;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.World;

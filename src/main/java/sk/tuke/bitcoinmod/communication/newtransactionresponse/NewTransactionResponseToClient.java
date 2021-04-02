@@ -1,6 +1,5 @@
 package sk.tuke.bitcoinmod.communication.newtransactionresponse;
 
-import javafx.util.Pair;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.Tuple;
 import sk.tuke.bitcoinmod.transactionscapability.model.Transaction;
