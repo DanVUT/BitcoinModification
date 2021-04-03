@@ -13,11 +13,19 @@ import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 
 import java.util.Optional;
 
+/**
+ * Trieda implementujuca GUI Blockchain Blocku.
+ */
 @OnlyIn(Dist.CLIENT)
 public class BlockchainBlockScreen extends Screen {
     private ListWidget listWidget;
     private TransactionsCapability transactionsCapability;
 
+
+    /**
+     * V konstruktore sa ulozi do lokalnej premennej instancia triedy TransactionsCapability k tomu, aby bola dostupna pre zobrazenie listu transakcii.
+     * @param titleIn
+     */
     protected BlockchainBlockScreen(ITextComponent titleIn) {
         super(titleIn);
 
@@ -25,6 +33,9 @@ public class BlockchainBlockScreen extends Screen {
         transactionsCapability = clientWorld.get().getCapability(TransactionsCapabilityProvider.CAPABILITY_TRANSACTIONS, null).orElse(null);
     }
 
+    /**
+     * Metoda init inicializuje listove zobrazenie transakcii
+     */
     @Override
     protected void init() {
         super.init();
@@ -32,12 +43,23 @@ public class BlockchainBlockScreen extends Screen {
         this.children.add(listWidget);
     }
 
+
+    /**
+     * Metoda render sa stara o vykreslenie obsahu okna. V tomto pripade sa vykresluje iba listove zobrazenie
+     * @param p_render_1_ X suradnica pozicie mysi
+     * @param p_render_2_ Y suradnica pozicie mysi
+     * @param p_render_3_ Partial ticks
+     */
     @Override
     public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
         super.render(p_render_1_, p_render_2_, p_render_3_);
         this.listWidget.render(p_render_1_, p_render_2_, p_render_3_);
     }
 
+    /**
+     * Metoda definuje, ci tato obrazovka ma v rezime jedneho hraca pozastavit hru alebo nie
+     * @return Vracia vzdy false. Takze obrazovka hru na pozadi nepozastavi
+     */
     @Override
     public boolean isPauseScreen() {
         return false;

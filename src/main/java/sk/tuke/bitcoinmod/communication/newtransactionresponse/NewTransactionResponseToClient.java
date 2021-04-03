@@ -8,12 +8,20 @@ import sk.tuke.bitcoinmod.transactionscapability.model.TransactionOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trieda reprezentujuca odpoved servera na ziadost vytvorenia novej transakcie
+ */
 public class NewTransactionResponseToClient {
     private boolean newTransactionCreated;
     private Transaction newTransaction;
     private List<Tuple<Integer, Integer>> usedTransactions;
     private boolean isValid;
 
+    /**
+     * @param newTransactionCreated informacia ci server vytvoril transakciu
+     * @param newTransaction nova transakcia
+     * @param usedTransactions pouzite transakcie pri procese vytvarania
+     */
     public NewTransactionResponseToClient(boolean newTransactionCreated, Transaction newTransaction, List<Tuple<Integer, Integer>> usedTransactions) {
         this.newTransactionCreated = newTransactionCreated;
         this.newTransaction = newTransaction;
@@ -37,6 +45,10 @@ public class NewTransactionResponseToClient {
         return isValid;
     }
 
+    /**
+     * Metoda zakoduje obsah spravy do Packet Buffera. Vola sa na strane servera
+     * @param buffer Packet Buffer do ktoreho sa zakoduje obsah spravy
+     */
     public void encode(PacketBuffer buffer){
         buffer.writeBoolean(newTransactionCreated);
 
@@ -62,6 +74,11 @@ public class NewTransactionResponseToClient {
         }
     }
 
+    /**
+     * Metoda precita obsah spravy z buffera. Vola sa na strane klienta.
+     * @param buffer Packet Buffer ktory obsahuje obsah spravy
+     * @return instancia NewTransactionResponseToClient
+     */
     public static NewTransactionResponseToClient decode(PacketBuffer buffer){
         boolean newTransactionCreated = buffer.readBoolean();
 

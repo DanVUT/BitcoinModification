@@ -19,22 +19,47 @@ import sk.tuke.bitcoinmod.EntryPoint;
 
 import javax.annotation.Nullable;
 
+/**
+ * Trieda implementujuca WalletBlock (Bitcoin Wallet Block)
+ */
 public class WalletBlock extends ContainerBlock {
+    /**
+     * Konstruktor nastavuje tvrdost bloku aby sa nedal rozbit na jednu ranu a RegistryName na "wallet_block"
+     */
     public WalletBlock() {
         super(Properties.create(Material.IRON).hardnessAndResistance(1.15f));
         this.setRegistryName(EntryPoint.MODID, "wallet_block");
     }
+
+    /**
+     * Informacia ci blok obsahuje TileEntity
+     * @return vzdy true
+     */
     @Override
     public boolean hasTileEntity() {
         return true;
     }
 
+    /**
+     * @param worldIn nevyuzity argument
+     * @return vrati novu instanciu WalletBlockTileEntity
+     */
     @Nullable
     @Override
     public TileEntity createNewTileEntity(IBlockReader worldIn) {
         return new WalletBlockTileEntity();
     }
 
+    /**
+     * Pri pouziti bloku hracom mu otvori GUI
+     * @param state stav bloku
+     * @param worldIn instancia svetu
+     * @param pos pozicia bloku
+     * @param player hrac ktory interaguje s blokom
+     * @param handIn nevyuzity argument
+     * @param hit nevyuzity argument
+     * @return ActionResultType.SUCCESS alebo ActionResultType.FAIL
+     */
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if(worldIn.isRemote){
@@ -53,6 +78,14 @@ public class WalletBlock extends ContainerBlock {
         return ActionResultType.SUCCESS;
     }
 
+    /**
+     * V pripade, ze je blok rozbity, tak tato metoda sa stara o vyhodenie jeho obsahu na zem
+     * @param state predchadzajuci stav bloku
+     * @param worldIn instancia sveta
+     * @param pos pozicia
+     * @param newState novy stav bloku
+     * @param isMoving nevyuzity argument
+     */
     @Override
     public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         if(state.getBlock() != newState.getBlock()){
@@ -66,6 +99,11 @@ public class WalletBlock extends ContainerBlock {
     }
 
 
+    /**
+     * Definuje, aby sa tento blok vzdy vykreslil ako model
+     * @param state nevyuzity argument
+     * @return vzdy BlockRenderType.MODEL
+     */
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

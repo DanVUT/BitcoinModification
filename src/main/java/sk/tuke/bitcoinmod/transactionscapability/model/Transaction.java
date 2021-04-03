@@ -3,6 +3,9 @@ package sk.tuke.bitcoinmod.transactionscapability.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trieda reprezentujuca transakciu
+ */
 public class Transaction {
     private int transactionID;
     private long senderBitcoinAddress;

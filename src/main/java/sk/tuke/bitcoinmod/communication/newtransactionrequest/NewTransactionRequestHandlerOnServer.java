@@ -18,7 +18,16 @@ import sk.tuke.bitcoinmod.transactionscapability.model.Transaction;
 import java.util.List;
 import java.util.function.Supplier;
 
+/**
+ * Trieda implementujuca obsluhu spravy typu NewTransactionRequestToServer. Tato obsluha sa vykonava na serveri
+ */
 public class NewTransactionRequestHandlerOnServer {
+
+    /**
+     * Obsluha prijme spravu, skontroluje, aku transakciu si ziada hrac vytvorit. V pripade, ze takuto transakciu je mozne vytvorit, tak si ju server vytvori. A informuje o tom ostatnym hracom pomocou spravy NewTransactionResponseToClient
+     * @param message prijata sprava typu NewTransactionRequestToServer
+     * @param ctxSupplier network context poskytujuci informacie ku komunikacii
+     */
     public static void handleMessage(final NewTransactionRequestToServer message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
         context.setPacketHandled(true);

@@ -11,8 +11,15 @@ import sk.tuke.bitcoinmod.communication.alltransactions.AllTransactionsMessageTo
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 
+/**
+ * Trieda implementujuca obsluhu na pripojenie noveho hraca
+ */
 @Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerJoinEvent {
+    /**
+     * Obsluha udalost ked sa pripoji hrac. Server odosle hracovi vsetky transakcie.
+     * @param event obsahuje kontext pripojeneho hraca
+     */
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event){
         if(!event.getPlayer().getEntityWorld().isRemote){

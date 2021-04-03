@@ -4,15 +4,25 @@ import net.minecraft.network.PacketBuffer;
 import sk.tuke.bitcoinmod.transactionscapability.model.Transaction;
 import sk.tuke.bitcoinmod.transactionscapability.model.TransactionOutput;
 
+/**
+ * Trieda reprezentujuca spravu ktoru server odosle klientom po "vytazeni" Bitcoinov. Obsah tejto spravy obsahuje len jednu transakciu.
+ */
 public class MiningMessageToClient {
     private Transaction baseTransaction;
     private boolean isValid;
 
+    /**
+     * @param baseTransaction Coinbase transakcia, ktora je vysledkom posledneho tazenia
+     */
     public MiningMessageToClient(Transaction baseTransaction) {
         this.baseTransaction = baseTransaction;
         this.isValid = true;
     }
 
+    /**
+     * Getter Coinbase transakcie
+     * @return Coinbase transakcia
+     */
     public Transaction getBaseTransaction() {
         return baseTransaction;
     }
@@ -21,6 +31,11 @@ public class MiningMessageToClient {
         return isValid;
     }
 
+
+    /**
+     * Metoda zakoduje obsah spravy do Packet Buffera. Vola sa na strane servera
+     * @param buffer Packet Buffer do ktoreho sa zakoduje Coinbase transakcia
+     */
     public void encode(PacketBuffer buffer){
         buffer.writeInt(baseTransaction.getTransactionID());
         buffer.writeLong(baseTransaction.getSenderBitcoinAddress());
@@ -35,6 +50,11 @@ public class MiningMessageToClient {
         }
     }
 
+    /**
+     * Metoda dekoduje obsah spravy z Packet Buffera. Vola sa na strane klienta
+     * @param buffer Packet Buffer z ktoreho sa cita obsah spravy
+     * @return instancia triedy MiningMessageToClient
+     */
     public static MiningMessageToClient decode(PacketBuffer buffer){
         int transactionID = buffer.readInt();
         long senderBitcoinAddress = buffer.readLong();

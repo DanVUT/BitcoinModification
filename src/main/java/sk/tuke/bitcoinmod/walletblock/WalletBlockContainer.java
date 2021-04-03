@@ -13,6 +13,9 @@ import sk.tuke.bitcoinmod.walletitem.WalletItemSlot;
 
 import javax.annotation.Nullable;
 
+/**
+ * Trieda ktora sa stara o mapovanie hracovho inventara a obsahu Wallet Blocku na obrazovku tak, aby sedeli do textury okna
+ */
 public class WalletBlockContainer extends Container {
     private WalletBlockContent walletBlockContent;
     private final int COLUMNS_COUNT = 9;
@@ -38,6 +41,12 @@ public class WalletBlockContainer extends Container {
         return new WalletBlockContainer(windowID, playerInventory, content);
     }
 
+    /**
+     * Konstruktor namapuje sloty inventara a obsahu bloku na obrazovku tak, aby sedeli do textury WalletBlock okna
+     * @param windowID nevyuzity argument
+     * @param playerInventory hracov inventar
+     * @param walletBlockContent obsah WalletBlocku
+     */
     protected WalletBlockContainer( int windowID, PlayerInventory playerInventory, WalletBlockContent walletBlockContent) {
         super(WalletBlockCommonEvents.walletBlockContainerType, windowID);
         this.walletBlockContent = walletBlockContent;
@@ -46,6 +55,10 @@ public class WalletBlockContainer extends Container {
         generateWalletSlots();
     }
 
+    /**
+     * Stara sa o mapovanie slotov hracovho inventara do GUI okna
+     * @param inventoryWrapper hracov inventar
+     */
     private void generateInventorySlots(PlayerInvWrapper inventoryWrapper){
         for(int i = 0; i < COLUMNS_COUNT; i++){
             int xpos = HOTBAR_FIRST_SLOT_X_POSITION + i * SLOT_SPACING;
@@ -62,10 +75,18 @@ public class WalletBlockContainer extends Container {
         }
     }
 
+    /**
+     * Stara sa o mapovanie slotov obsahu WalletBlocku do GUI okna
+     */
     private void generateWalletSlots(){
         addSlot(new WalletItemSlot(walletBlockContent, 0, GENERATED_ITEM_X_POSITION, GENERATED_ITEM_Y_POSITION, false));
         addSlot(new WalletItemSlot(walletBlockContent, 1, MANAGED_ITEM_X_POSITION, MANAGED_ITEM_Y_POSITION, true));
     }
+
+    /**
+     * @param playerIn hrac ktory chce pristupit ku containeru
+     * @return vysledok ci hrac moze pouzit container
+     */
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
         return this.walletBlockContent.isUsableByPlayer(playerIn);
@@ -76,10 +97,18 @@ public class WalletBlockContainer extends Container {
         return ItemStack.EMPTY;
     }
 
+    /**
+     * Vlozi vygenerovany WalletItem do vrchneho slotu
+     * @param stack WalletItem ktory vznikne pri procese generovania
+     */
     public void setGeneratedWalletSlot(ItemStack stack){
         this.walletBlockContent.setInventorySlotContents(0, stack);
     }
 
+    /**
+     * Vrati WalletItem, ktory sa nachadza v spodnom slote okna
+     * @return WalletItem v spodnom slote
+     */
     public ItemStack getManagedWalletSlot(){
         return this.walletBlockContent.getStackInSlot(1);
     }

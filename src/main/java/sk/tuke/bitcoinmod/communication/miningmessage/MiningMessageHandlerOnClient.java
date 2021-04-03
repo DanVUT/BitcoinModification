@@ -13,7 +13,17 @@ import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+
+/**
+ * Obsluha spravy MiningMessageToClient, ktoru prijme klientska aplikacia ked server vyberie Bitcoin Adresu, ktora vytazi Bitcoiny.
+ * */
 public class MiningMessageHandlerOnClient {
+
+    /**
+     * Obsluha spravy MiningMessageToClient prijme jednu Coinbase transakciu, ktoru prida do svojej kopie TransactionsCapability
+     * @param message prijata sprava typu MiningMessageToClient
+     * @param ctxSupplier network context obsahujuci informacie o komunikacii
+     */
     public static void handleMessage(MiningMessageToClient message, Supplier<NetworkEvent.Context> ctxSupplier){
         NetworkEvent.Context context = ctxSupplier.get();
         context.setPacketHandled(true);

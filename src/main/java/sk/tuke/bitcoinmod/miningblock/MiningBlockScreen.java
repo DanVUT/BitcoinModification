@@ -13,8 +13,11 @@ import sk.tuke.bitcoinmod.interfaces.IRefreshable;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapability;
 import sk.tuke.bitcoinmod.transactionscapability.TransactionsCapabilityProvider;
 import sk.tuke.bitcoinmod.walletitem.WalletItem;
-
 import java.awt.*;
+
+/**
+ * Trieda implementujuca GUI Mining Blocku.
+ */
 @OnlyIn(Dist.CLIENT)
 public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> implements IRefreshable {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(EntryPoint.MODID, "textures/gui/mining_block_gui.png");
@@ -28,6 +31,12 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> imp
     private static int BITCOIN_AMOUNT_TEXT_X_POS = WALLET_TEXT_X_POS - 15;
     private static int BITCOIN_AMOUNT_TEXT_Y_POS = WALLET_TEXT_Y_POS + 40;
 
+    /**
+     * Konstruktor nastavi velkost okna na velkost aku ma textura Mining Block GUI (175x165)
+     * @param screenContainer referencia MiningBlockContaineru
+     * @param inv hracov inventar
+     * @param titleIn nevyuzity argument
+     */
     public MiningBlockScreen(MiningBlockContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
         this.xSize = 175;
@@ -38,6 +47,12 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> imp
     }
 
 
+    /**
+     * Metoda namapuje texturu Mining Block GUI s  Mining Block Screen
+     * @param partialTicks nevyuzity argument
+     * @param mouseX nevyuzity argument
+     * @param mouseY nevyuzity argument
+     */
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
@@ -46,6 +61,11 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> imp
         this.blit(edgeSpacingX, edgeSpacingY, 0, 0, this.xSize, this.ySize);
     }
 
+    /**
+     * Vypis retazcov "Wallet", "Diamonds", "BTC:" do okna
+     * @param mouseX nevyuzity argument
+     * @param mouseY nevyuzity argument
+     */
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
@@ -78,6 +98,9 @@ public class MiningBlockScreen extends ContainerScreen<MiningBlockContainer> imp
 //    }
 
 
+    /**
+     * Implementuje rozhranie IRefreshable. Tato funkcia zisti pocet Bitcoinov na Bitcoin adrese vo vlozenom Wallet Iteme
+     */
     @Override
     public void refresh() {
         Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(miningBlockContainer.getWalletItemStack());

@@ -7,6 +7,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.items.ItemStackHandler;
 import java.util.function.Predicate;
 
+
+/**
+ * Trieda reprezentujuca obsah WalletBlocku. Implementacia je takmer totozna s MiningBlockom (pozri dokumentaciu tam)
+ */
 public class WalletBlockContent implements IInventory {
     private final ItemStackHandler content;
     private Predicate<PlayerEntity> canPlayerAccess;

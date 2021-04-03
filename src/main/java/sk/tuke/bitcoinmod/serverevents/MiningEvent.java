@@ -23,12 +23,20 @@ import java.util.List;
 import java.util.Random;
 
 
+/**
+ * Trieda, ktora nacuva na Forge zbernici a implementuje proces tazenia
+ */
 @Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MiningEvent {
     private static final int SECOND = 40;
-    private static final int TARGET = SECOND * 10;
+    private static final int TARGET = SECOND * 60;
     private static int totalTicks = 0;
 
+    /**
+     * Zo vsetkych TileEntities ktore si server uchovava vyberie tie MiningBlockTileEntity, ktore v sebe maju predmet Wallet Item
+     * @param allTileEntities list vsetkych TileEntities na serveri
+     * @return list vsetkych MiningBlockTileEntity ktore v sebe maju predmet typu Wallet Item
+     */
     private static List<MiningBlockTileEntity> getRelevantMiningBlockTileEntities(List<TileEntity> allTileEntities){
         List<MiningBlockTileEntity> result = new ArrayList<>();
         for(TileEntity te : allTileEntities){
@@ -43,6 +51,11 @@ public class MiningEvent {
         return result;
     }
 
+    /**
+     * Metoda vytvori losovaci list na zaklade diamantov vlozenych v diamantovom slote v MiningBlocku
+     * @param miningBlockTileEntities list relevantnych MiningBlockTileEntities
+     * @return list ktory sa pouzije pre vylosovanie "vyhercu" Bitcoinov
+     */
     private static List<Integer> getRaffleList(List<MiningBlockTileEntity> miningBlockTileEntities){
         List<Integer> result = new ArrayList<>();
 
@@ -56,6 +69,10 @@ public class MiningEvent {
         return result;
     }
 
+    /**
+     * Server kazdy Tick kontroluje, ci nepresiel pozadovany cas pre vytazenie Bitcoinov. V pripade ze ano, vyberie jeden Mining Block, ktoreho Bitcoin Adresa ziska Bitcoiny.
+     * @param event nevyuzity argument
+     */
     @SubscribeEvent
     public static void onTickEvent(TickEvent.WorldTickEvent event){
         totalTicks += 1;

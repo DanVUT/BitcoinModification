@@ -12,6 +12,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import sk.tuke.bitcoinmod.EntryPoint;
 
+/**
+ * Trieda načuva na modovej zbernici a registruje WalletBlock (Bitcoin Wallet Block) a vsetky jej sucasti
+ */
 @Mod.EventBusSubscriber(modid= EntryPoint.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class WalletBlockCommonEvents {
     public static WalletBlock walletBlock;
@@ -19,11 +22,19 @@ public class WalletBlockCommonEvents {
     public static TileEntityType<WalletBlockTileEntity> walletBlockTileEntityType;
     public static ContainerType<WalletBlockContainer> walletBlockContainerType;
 
+    /**
+     * Obsluha zaregistruje WalletBlock do hry
+     * @param event kontext registracie
+     */
     @SubscribeEvent
     public static void registerBlock(final RegistryEvent.Register<Block> event){
         walletBlock = new WalletBlock();
         event.getRegistry().register(walletBlock);
     }
+    /**
+     * Obsluha zaregistruje WalletBlock do hry ako predmet
+     * @param event kontext registracie
+     */
     @SubscribeEvent
     public static void registerItem(final RegistryEvent.Register<Item> event){
         Item.Properties properties = new Item.Properties().maxStackSize(1).group(ItemGroup.MISC);
@@ -32,6 +43,10 @@ public class WalletBlockCommonEvents {
         event.getRegistry().register(walletBlockItem);
     }
 
+    /**
+     * Obsluha zaregistruje WalletBlockTileEntity do hry
+     * @param event kontext registracie
+     */
     @SubscribeEvent
     public static void registerTileEntity(final RegistryEvent.Register<TileEntityType<?>> event){
         walletBlockTileEntityType = TileEntityType.Builder.create(WalletBlockTileEntity::new, walletBlock).build(null);
@@ -39,6 +54,10 @@ public class WalletBlockCommonEvents {
         event.getRegistry().register(walletBlockTileEntityType);
     }
 
+    /**
+     * Obsluha zaregistruje WalletBlockContainer do hry
+     * @param event kontext registracie
+     */
     @SubscribeEvent
     public static void registerContainer(final RegistryEvent.Register<ContainerType<?>> event){
         walletBlockContainerType = IForgeContainerType.create(WalletBlockContainer::createForClientSide);

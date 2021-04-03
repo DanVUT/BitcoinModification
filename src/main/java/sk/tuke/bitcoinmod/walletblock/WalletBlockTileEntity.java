@@ -17,6 +17,9 @@ import sk.tuke.bitcoinmod.EntryPoint;
 
 import javax.annotation.Nullable;
 
+/**
+ * Implementacia TileEntity pre WalletBlock. Implementacia je prakticky rovnaka ako MiningBlockTileEntity (pozri dokumentaciu tam)
+ */
 public class WalletBlockTileEntity extends TileEntity implements INamedContainerProvider {
     public static final int NUMBER_OF_SLOTS = 2;
     private final WalletBlockContent walletBlockContent;

@@ -8,6 +8,9 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.function.Predicate;
 
+/**
+ * Trieda implementujuca obsah Mining Blocku
+ */
 public class MiningBlockContent implements IInventory {
     private ItemStackHandler content;
     private Predicate<PlayerEntity> canPlayerAccess;
@@ -21,6 +24,11 @@ public class MiningBlockContent implements IInventory {
         return new MiningBlockContent(slots, x -> true, () -> {});
     }
 
+    /**
+     * @param slots pocet slotov v bloku (2)
+     * @param canPlayerAccess lambda funkcia, ktora sluzi pre zistenie ci hrac moze interagovat s obsahom.
+     * @param markDirty lambda funkcia, ktora sluzi k oznaceniu, ze sa s obsahom manipulovalo. Ako mark dirty sa pouziva funkcia mark dirty z Tile Entity
+     */
     private MiningBlockContent(int slots, Predicate<PlayerEntity> canPlayerAccess, Runnable markDirty) {
         this.content = new ItemStackHandler(slots);
         this.canPlayerAccess = canPlayerAccess;

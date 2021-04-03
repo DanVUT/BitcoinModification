@@ -13,10 +13,25 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransactionsCapability {
+    /**
+     * Mapa transakcii
+     */
     Map<Integer, Transaction> transactions;
+    /**
+     * Celkovy pocet Bitcoinov v obehu
+     */
     private float bitcoinsTotal;
+    /**
+     * Prah ktory sa bude pripocitavat po tom, co bitcoinsTotal sa bude rovnat nextThreshold
+     */
     private float threshold;
+    /**
+     * Stav ked sa celkovy pocet Bitcoinov bude rovnat tejto hodnote, tak sa bude menit baseAmount
+     */
     private float nextThreshold;
+    /**
+     * Pripocitavana suma Bitcoinov v ramci Coinbase transakcii
+     */
     private float baseAmount;
 
     public TransactionsCapability(){
@@ -26,6 +41,12 @@ public class TransactionsCapability {
         bitcoinsTotal = 0.0f;
         baseAmount = 50.0f;
     }
+
+    /**
+     * Metoda vrati vsetky neminute transakcie danej Bitcoin adresy
+     * @param bitcoinAddress Bitcoin adresa
+     * @return Vsetky neminute transakcie danej Bitcoin adresy
+     */
     //Gets all transactions which have unspent transaction output with given bitcoin address
     public List<Integer> getTransactions(long bitcoinAddress){
         Map<Integer, Transaction> tmp =  transactions
@@ -45,6 +66,12 @@ public class TransactionsCapability {
         Arrays.sort(keys);
         return Arrays.asList(keys);
     }
+
+    /**
+     * @param transactionsIDs list ID transakcii
+     * @param bitcoinAddress bitcoin adresa
+     * @return vrati sucet Bitcoinov z poskytnutych ID pre danu Bitcoin adresu
+     */
     //Gets sum from all given transactions for given bitcoin address
     public float getTransactionsSum(List<Integer> transactionsIDs, long bitcoinAddress){
         float sum = 0.0f;
@@ -59,14 +86,30 @@ public class TransactionsCapability {
         }
         return sum;
     }
+
+    /**
+     * Metoda vrati sucet Bitcoinov pre zadanu Bitcoin adresu
+     * @param bitcoinAddress Bitcoin adresa
+     * @return sucet Bitcoinov pre danu Bitcoin adresu
+     */
     //Gets sum from all transactions for given bitcoin address
     public float getTransactionsSum(long bitcoinAddress){
         return getTransactionsSum(getTransactions(bitcoinAddress), bitcoinAddress);
     }
+
+    /**
+     * Metoda prida transakciu do mnoziny vsetkych transakcii
+     * @param transaction pridavana transakcia
+     */
     //Adds transaction into transactions pool
     public void addTransaction(Transaction transaction){
         transactions.put(transaction.getTransactionID(), transaction);
     }
+
+    /**
+     * Metoda namapuje list transakcii na mapu transakcii
+     * @param transactions list transakcii
+     */
     //Maps transactions from list into transactions map
     public void mapTransactions(List<Transaction> transactions){
         this.transactions.clear();
@@ -74,16 +117,31 @@ public class TransactionsCapability {
             this.transactions.put(transaction.getTransactionID(), transaction);
         }
     }
+
+    /**
+     * Oznaci transakcne vystupy transakcii v liste ako minute
+     * @param usedTransactions List pouzitych transakcii a ich vystupov
+     */
     //Marks transactions as spent
     public void markTransactionsAsSpent(List<Tuple<Integer, Integer>> usedTransactions){
         for(Tuple<Integer, Integer> entry : usedTransactions){
             this.transactions.get(entry.getA()).getTransactionOutputs().get(entry.getB()).setSpent(true);
         }
     }
+
+    /**
+     * @return vrati mapu transakcii
+     */
     //Returns map of transactions
     public Map<Integer, Transaction> getAllTransactions(){
         return transactions;
     }
+
+    /**
+     * Vytvori Coinbase transakciu
+     * @param recipientBitcoinAddress Bitcoin adresa ktora "vytazila" Bitcoiny
+     * @return vytvorena Coinbase transakcia
+     */
     //Creates base transaction for given bitcoin address
     public Transaction createBaseTransaction(long recipientBitcoinAddress){
         Transaction newTransaction = new Transaction(transactions.size(), 0, recipientBitcoinAddress, true);
@@ -99,6 +157,14 @@ public class TransactionsCapability {
         return newTransaction;
     }
 
+    /**
+     * Metoda vytvori novu pouzivatelsku transakciu a oznaci pouzite Transakcie ako minute
+     * @param senderBitcoinAddress Bitcoin adresa odosielatela
+     * @param recipientBitcoinAddress Bitcoin adres prijimatela
+     * @param bitcoinAmount Mnozstvo posielanych Bitcoinov
+     * @return Transakcia a List pouzitych transakcii
+     * @throws RuntimeException V pripade, ze je niektory z udajov nezmyselny
+     */
     //Creates new transaction from sender to recipient
     public Tuple<Transaction, List<Tuple<Integer, Integer>>> createNewTransaction(long senderBitcoinAddress, long recipientBitcoinAddress, float bitcoinAmount) throws RuntimeException{
         List<Integer> transactionsIDs = getTransactions(senderBitcoinAddress);
@@ -137,7 +203,9 @@ public class TransactionsCapability {
     }
 
 
-
+    /**
+     * Trieda sluzi na serializaciu/deserializaciu TransactionsCapability
+     */
     public static class TransactionsCapabilityStorage implements Capability.IStorage<TransactionsCapability>{
         private static final String TRANSACTIONS_COUNT_TAG = "TRANSACTIONS_COUNT";
         private static final String BITCOINS_TOTAL_TAG = "BITCOINS_TOTAL";
@@ -156,6 +224,13 @@ public class TransactionsCapability {
         private static final String TRANSACTION_OUTPUT_IS_CHANGE = "TRANSACTION_OUTPUT_IS_CHANGE";
         private static final String TRANSACTION_OUTPUT_IS_SPENT = "TRANSACTION_OUTPUT_IS_SPENT";
 
+        /**
+         * Metoda serializuje TransactionsCapability do NBT struktury
+         * @param capability nepouzity argument
+         * @param instance instancia TransactionsCapability
+         * @param side nevyuzity argument
+         * @return serializovana TransactionsCapability do NBT struktury
+         */
         @Nullable
         @Override
         public INBT writeNBT(Capability<TransactionsCapability> capability, TransactionsCapability instance, Direction side) {
@@ -197,6 +272,13 @@ public class TransactionsCapability {
             return nbt;
         }
 
+        /**
+         * Metoda deserializuje TransactionsCapability z NBT struktury
+         * @param capability nevyuzity argument
+         * @param instance instancia TransactionsCapability ktora sa bude naplnat z NBT
+         * @param side nevyuzity argument
+         * @param nbt NBT obsahujuce serializovanu TransactionsCapability
+         */
         @Override
         public void readNBT(Capability<TransactionsCapability> capability, TransactionsCapability instance, Direction side, INBT nbt) {
             CompoundNBT parentNbt = (CompoundNBT) nbt;

@@ -23,11 +23,18 @@ import java.util.Optional;
 import static net.minecraftforge.fml.network.NetworkDirection.PLAY_TO_CLIENT;
 import static net.minecraftforge.fml.network.NetworkDirection.PLAY_TO_SERVER;
 
+/**
+ * Trieda nacuvajuca na modovej zbernici, ktora vytvara komunikacny kanal a registruje na nom spravy.
+ */
 @Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommunicationChannel {
     public static final String MESSAGE_PROTOCOL_VERSION = "1";
     public static SimpleChannel SIMPLECHANNEL;
 
+    /**
+     * Pocas tejto obsluhy sa vytvori instancia SimpleChannelu, do ktorej sa zaregistruju jednotlive spravy a ich obsluhy
+     * @param event nepouzity argument
+     */
     @SubscribeEvent
     public static void onCommonSetupEvent(FMLCommonSetupEvent event){
         SIMPLECHANNEL = NetworkRegistry.newSimpleChannel(

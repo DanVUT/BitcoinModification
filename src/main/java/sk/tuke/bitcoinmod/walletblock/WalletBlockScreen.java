@@ -53,6 +53,12 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
     private TextFieldWidget addressTextField;
     private Button sendButton;
 
+    /**
+     * Konstruktor nastavi velkost okna podla rozmerov textury pre okno (175x200)
+     * @param screenContainer referencia na WalletBlockContainer
+     * @param inv hracov inventar
+     * @param titleIn nazov okna
+     */
     public WalletBlockScreen(WalletBlockContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
         xSize = 175;
@@ -63,6 +69,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         this.bitcoinAmount = 0.0f;
     }
 
+    /**
+     * Inicializuju sa tlacidla a textove polia
+     */
     @Override
     protected void init() {
         super.init();
@@ -70,6 +79,12 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         setTextFields();
     }
 
+    /**
+     * Sluzi pre vykreslenie pozadia, textboxov, tlacidiel a tooltipu
+     * @param mouseX X pozicia mysi
+     * @param mouseY Y pozicia mysi
+     * @param partialTicks Partial Ticks
+     */
     @Override
     public void render(int mouseX, int mouseY, float partialTicks) {
         this.renderBackground();
@@ -82,6 +97,11 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         this.renderHoveredToolTip(mouseX, mouseY);
     }
 
+    /**
+     * Sluzi pre vypisanie poctu Bitcoinov na Bitcoin Adrese z vlozeneho WalletItemu
+     * @param mouseX nevyuzity argument
+     * @param mouseY nevyuzity argument
+     */
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
@@ -94,6 +114,13 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         fontRenderer.drawString("BTC: " + bitcoinAmount, BITCOIN_BALANCE_TEXT_X_POS, BITCOIN_BALANCE_TEXT_Y_POS, Color.BLACK.getRGB());
     }
 
+
+    /**
+     * Sluzi pre definovanie textury pre okno
+     * @param partialTicks nevyuzity argument
+     * @param mouseX nevyuzity argument
+     * @param mouseY nevyuzity argument
+     */
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -116,6 +143,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
     }
 
 
+    /**
+     * Sluzi pre definovanie textovych poli a ich vlozenie do okna
+     */
     private void setTextFields(){
         amountTextField = new TextFieldWidget(minecraft.fontRenderer, this.guiLeft + AMOUNT_X_POS, this.guiTop + AMOUNT_Y_POS, 80, 20, "0.0");
         addressTextField = new TextFieldWidget(minecraft.fontRenderer, this.guiLeft + ADDRESS_X_POS, this.guiTop + ADDRESS_Y_POS, 100, 20, "Address");
@@ -127,6 +157,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         children.add(addressTextField);
     }
 
+    /**
+     * Sluzi pre definovanie tlacidiel a ich vlozenie do okna
+     */
     private void setButtons(){
         Button generateButton = new Button(GEN_BUTTON_X_POS + this.guiLeft, GEN_BUTTON_Y_POS + this.guiTop, 120, 20, "New Bitcoin Key Pair", (but) ->{
             CommunicationChannel.SIMPLECHANNEL.sendToServer(new GenerateWalletMessageToServer());
@@ -162,6 +195,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
         addButton(sendButton);
     }
 
+    /**
+     * Kazdy tick sa vykonava kontrola, ci je v spodnom slote vlozeny predmet WalletItem a podla toho sa odblokuju textboxy a tlacidlo SEND
+     */
     @Override
     public void tick() {
         super.tick();
@@ -187,6 +223,9 @@ public class WalletBlockScreen extends ContainerScreen<WalletBlockContainer> imp
     }
 
 
+    /**
+     * Metoda sluzi na prepocitanie poctu Bitcoinov na Bitcoin Adrese vlozeneho WalletItemu
+     */
     @Override
     public void refresh() {
         Tuple<Long, Long> pair = WalletItem.getKeyPairFromWalletItemStack(container.getManagedWalletSlot());

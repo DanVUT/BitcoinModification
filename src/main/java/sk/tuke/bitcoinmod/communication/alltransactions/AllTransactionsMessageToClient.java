@@ -8,21 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Sprava obsahujuca vsetky transakcie na serveri. Server odosiela tuto spravu hracovi ked sa pripoji na server
+ */
 public class AllTransactionsMessageToClient {
     private List<Transaction> allTransactions;
     private boolean isValid;
 
+    /**
+     * Konstruktor skopiruje transakcie do lokalneho listu. Tento konstruktor sa vyuziva na strane serveru
+     * @param transactionsMap mapa vsetkych transakcii na serveri
+     */
     public AllTransactionsMessageToClient(Map<Integer, Transaction> transactionsMap){
         this.allTransactions = new ArrayList<>();
         this.allTransactions.addAll(transactionsMap.values());
         this.isValid = true;
     }
 
+    /**
+     * Tento konstrutor sa vyuziva na strane klienta
+     * @param transactionList List transakcii obdrzany klientom
+     */
     public AllTransactionsMessageToClient(List<Transaction> transactionList){
         this.allTransactions = transactionList;
         this.isValid = true;
     }
 
+    /**
+     * @return vrati list vsetkych transakcii
+     */
     public List<Transaction> getAllTransactions() {
         return allTransactions;
     }
@@ -31,6 +45,10 @@ public class AllTransactionsMessageToClient {
         return isValid;
     }
 
+    /**
+     * Metoda, ktora zakoduje vsetky transakcie do packetoveho buffera. Pouziva sa na strane serveru.
+     * @param buffer buffer do ktoreho sa zakoduju vsetky transakcie
+     */
     public void encode(PacketBuffer buffer){
         buffer.writeInt(this.allTransactions.size());
         for(Transaction transaction : allTransactions){
@@ -48,6 +66,11 @@ public class AllTransactionsMessageToClient {
         }
     }
 
+    /**
+     * Metoda dekoduje vsetky transakcie z packetoveho buffera. Pouziva sa na strane klienta
+     * @param buffer buffer z ktoreho sa citaju vsetky transakcie
+     * @return vrati instanciu spravy typu AllTransactionsMessageToClient
+     */
     public static AllTransactionsMessageToClient decode(PacketBuffer buffer){
         ArrayList<Transaction> allTransactions = new ArrayList<>();
         int transactionsCount = buffer.readInt();
