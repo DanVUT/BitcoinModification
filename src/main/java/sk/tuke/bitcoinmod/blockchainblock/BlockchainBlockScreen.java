@@ -18,7 +18,14 @@ import java.util.Optional;
  */
 @OnlyIn(Dist.CLIENT)
 public class BlockchainBlockScreen extends Screen {
+
+    /**
+     * Referencia na ListWidget. Sluzi pre listove zobrazenie transakcii
+     */
     private ListWidget listWidget;
+    /**
+     * Referencia na TransactionsCapability pre lahsi pristup k transakciam
+     */
     private TransactionsCapability transactionsCapability;
 
 
@@ -34,7 +41,7 @@ public class BlockchainBlockScreen extends Screen {
     }
 
     /**
-     * Metoda init inicializuje listove zobrazenie transakcii
+     * Metoda init inicializuje inštanciu listoveho zobrazenia transakcii (ListWidget)
      */
     @Override
     protected void init() {

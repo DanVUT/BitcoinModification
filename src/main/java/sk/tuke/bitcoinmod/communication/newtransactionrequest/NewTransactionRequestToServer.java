@@ -7,9 +7,21 @@ import net.minecraft.network.PacketBuffer;
  * Trieda reprezentujuca poziadavku na server o vytvorenie novej transakcie
  */
 public class NewTransactionRequestToServer {
+    /**
+     * Odosielatelov privatny kluc
+     */
     private long senderPrivateKey;
+    /**
+     * Odosielatelova bitcoin adresa
+     */
     private long senderBitcoinAddress;
+    /**
+     * Prijimatelova Bitcoin adresa
+     */
     private long recipientBitcoinAddress;
+    /**
+     * Odosielana suma Bitcoinov
+     */
     private float bitcoinAmount;
     private boolean isValid;
 

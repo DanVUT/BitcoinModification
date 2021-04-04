@@ -12,8 +12,17 @@ import java.util.List;
  * Trieda reprezentujuca odpoved servera na ziadost vytvorenia novej transakcie
  */
 public class NewTransactionResponseToClient {
+    /**
+     * Prepinac, ci sa ziadana transakcia vytvorila alebo nie
+     */
     private boolean newTransactionCreated;
+    /**
+     * Nova transakcia, ktora sa bude hracom posielat
+     */
     private Transaction newTransaction;
+    /**
+     * Zoznam pouzitych transakcii pre novu transakciu
+     */
     private List<Tuple<Integer, Integer>> usedTransactions;
     private boolean isValid;
 

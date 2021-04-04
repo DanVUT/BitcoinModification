@@ -28,8 +28,17 @@ import java.util.Random;
  */
 @Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MiningEvent {
+    /**
+     * Jedna sekunda je priblizne 40 TICKOV
+     */
     private static final int SECOND = 40;
+    /**
+     * Mining sa bude vykonavat raz za minutu
+     */
     private static final int TARGET = SECOND * 60;
+    /**
+     * Celkovy pocet Tickov
+     */
     private static int totalTicks = 0;
 
     /**

@@ -13,6 +13,9 @@ import java.util.Map;
  * Implementuje listove zobrazenie pre Blockchain Block
  */
 public class ListWidget extends ExtendedList<ListWidget.ListWidgetEntry> {
+    /**
+     * Referencia na mapu transakcii
+     */
     Map<Integer, Transaction> transactions;
 
     /**

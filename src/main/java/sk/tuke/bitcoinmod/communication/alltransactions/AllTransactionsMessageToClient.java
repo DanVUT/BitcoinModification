@@ -12,6 +12,9 @@ import java.util.Map;
  * Sprava obsahujuca vsetky transakcie na serveri. Server odosiela tuto spravu hracovi ked sa pripoji na server
  */
 public class AllTransactionsMessageToClient {
+    /**
+     * List vsetkych transakcii ktore sa budu posielat klientovi
+     */
     private List<Transaction> allTransactions;
     private boolean isValid;
 

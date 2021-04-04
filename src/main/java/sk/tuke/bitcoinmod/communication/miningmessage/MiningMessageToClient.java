@@ -8,6 +8,9 @@ import sk.tuke.bitcoinmod.transactionscapability.model.TransactionOutput;
  * Trieda reprezentujuca spravu ktoru server odosle klientom po "vytazeni" Bitcoinov. Obsah tejto spravy obsahuje len jednu transakciu.
  */
 public class MiningMessageToClient {
+    /**
+     * Coinbase transakcia, ktora sa bude posielat hracom
+     */
     private Transaction baseTransaction;
     private boolean isValid;
 

@@ -29,6 +29,9 @@ import static net.minecraftforge.fml.network.NetworkDirection.PLAY_TO_SERVER;
 @Mod.EventBusSubscriber(modid = EntryPoint.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CommunicationChannel {
     public static final String MESSAGE_PROTOCOL_VERSION = "1";
+    /**
+     * Referencia na SimpleChannel ktora sa vyuziva ked treba komunikovat medzi klientom a serverom
+     */
     public static SimpleChannel SIMPLECHANNEL;
 
     /**
