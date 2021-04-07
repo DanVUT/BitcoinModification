@@ -1,6 +1,6 @@
 {
   "block.bitcoinmod.wallet_block": "Bitcoin Wallet Block",
   "block.bitcoinmod.mining_block": "Bitcoin Mining Block",
-  "block.bitcoinmod.blockchain_block": "Blockchain Block",
+  "block.bitcoinmod.blockchain_block": "Blockchain Explorer Block",
   "item.bitcoinmod.wallet_item": "Bitcoin Key Pair"
 }
