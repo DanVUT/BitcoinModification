@@ -53,3 +53,12 @@ Vytváranie transakcií sa taktiež vykonáva pomocou Bitcoin Wallet Blocku. Hr�
 hráč napíše počet Bitcoinov, ktoré chce previesť a do druhého textového poľa napíše adresu príjemcu. Tlačítkom Send sa transakcia odošle na server.
 
 ## Ťažba Bitcoinov
+
+Ťažba sa iniciuje pomocou Mining Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím sa daný Mining Block zapojí do losovania o Bitcoiny, ktoré budú pripísané na Bitcoin Adresu vo vloženom predmete Bitcoin Key Pair.
+Server každú minútu v rámci všetkých Mining Blockov vyberie jednu Bitcoin Adresu, na ktorú pripíše Bitcoiny. Hráč môže vložiť diamanty do Mining Blocku, čím zvýši šancu, že server takýto blok vyberie.
+
+## Prezeranie Blockchainu
+
+"Blockchain" (list transakcií) si hráči môžu prezerať pomocou Blockchain Explorer Blocku. Ten zobrazuje všetky transakcie a detaily o ich výstupoch ako odosielateľa, príjemcu, množstvo poslaných Bitcoinov a informáciu, či bol výstup už minutý alebo ešte nie.
+
+
