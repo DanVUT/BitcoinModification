@@ -11,7 +11,7 @@ a zábavnou formou bez nutnosti investovať skutočné peniaze.
 4. Nakopírovať do priečinku mods bitcoin_modification-1.0.jar z priečinku modification v tomto repozitári
 
 # Návod na inštaláciu dedikovaného servera (pre účely hry viacerých hráčov)
-## UPOZORNENIE. K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ
+### !!!K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ!!!
 
 1. Stiahnúť inštalátor forge-1.15.2-31.2.0-installer.jar z priečinku modification v tomto repozitári
 2. Vybrať možnosť "install server" a nasmerovať inštalátor do nejakého prázdneho priečinku
