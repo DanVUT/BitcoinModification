@@ -14,8 +14,8 @@ Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre 
 
 1. Stiahnúť inštalátor forge-1.15.2-31.2.0-installer.jar z priečinku modification v tomto repozitári
 2. Vybrať možnosť "install server" a nasmerovať inštalátor do nejakého prázdneho priečinku
-3. Pre jednoduchosť premenovať v priečinku so serverom súbor "forge-1.15.2-31.2.0.jar" na "forgeserver.jar"
-4. Spustiť forgeserver.jar obyčajným dvojklikom. Nič sa nestane, ale vytvoria sa v priečinku ďalšie súbory
+3. Pre jednoduchosť premenovať v priečinku s nainštalovaným serverom súbor "forge-1.15.2-31.2.0.jar" na "forgeserver.jar"
+4. Spustiť forgeserver.jar obyčajným dvojklikom. Nič sa nestane, ale vytvoria sa v priečinku ďalšie súbory a priečinky
 5. Prepísať hodnotu v súbore eula.txt z eula=false na eula=true
 6. Do priečinku mods v adresári so serverom skopírovať bitcoin_modification-1.0.jar z priečinku modification v tomto repozitári (Ak sa takýto priečinok sám nevytvoril, tak ho treba vytvoriť)
 7. Vytvoriť run.bat v adresári so serverom s príkazom "java -Xmx2048M -Xms2048M -jar forgeserver.jar"
