@@ -27,18 +27,18 @@ a zábavnou formou bez nutnosti investovať skutočné peniaze.
 
 Modifikácia do hry pridáva 3 použiteľné bloky. Každý poskytuje iné grafické rozhranie a simuluje iný aspekt Bitcoinu:
 
-*Bitcoin Wallet Block - simuluje funkcionalitu Bitcoin Peňaženiek. Pomocou tohoto bloku sa generujú páry privátny kľúč/Bitcoin adresa v podobe herného predmetu Bitcoin Key Pair, zobrazuje sa zostatok a vytvárajú sa transakcie
-*Mining Block - simuluje funkcionalitu ťažobných softwarov. Umožňuje hráčom získať Bitcoiny z procesu ťaženia
-*Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
+* Bitcoin Wallet Block - simuluje funkcionalitu Bitcoin Peňaženiek. Pomocou tohoto bloku sa generujú páry privátny kľúč/Bitcoin adresa v podobe herného predmetu Bitcoin Key Pair, zobrazuje sa zostatok a vytvárajú sa transakcie
+* Mining Block - simuluje funkcionalitu ťažobných softwarov. Umožňuje hráčom získať Bitcoiny z procesu ťaženia
+* Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
 
 Tieto bloky je možné vyrobiť nasledujúcimi výrobnými receptami:
 
-*Bitcoin Wallet Block - 2x papier
-*Mining Block - 2x drevený kompáč
-*Blockchain Explorer Block - 2x kniha
+* Bitcoin Wallet Block - 2x papier
+* Mining Block - 2x drevený kompáč
+* Blockchain Explorer Block - 2x kniha
 
 Alebo ich je možné vyvolať administrátorskými príkazmi:
-*/give {playername alebo @p} bitcoinmod:wallet_block
-*/give {playername alebo @p} bitcoinmod:mining_block
-*/give {playername alebo @p} bitcoinmod:blockchain_block
+* /give {playername alebo @p} bitcoinmod:wallet_block
+* /give {playername alebo @p} bitcoinmod:mining_block
+* /give {playername alebo @p} bitcoinmod:blockchain_block
 
