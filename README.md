@@ -31,7 +31,7 @@ Modifikácia do hry pridáva 3 použiteľné bloky. Každý poskytuje iné grafi
 * Mining Block - simuluje funkcionalitu ťažobných softwarov. Umožňuje hráčom získať Bitcoiny z procesu ťaženia
 * Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
 
-![Bloky](/screenshoty/bloky.png)
+![Bloky](/screenshoty/blocks.png)
 Format: ![Alt Text](url)
 
 Tieto bloky je možné vyrobiť nasledujúcimi výrobnými receptami:
