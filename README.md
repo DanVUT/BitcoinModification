@@ -71,4 +71,6 @@ Server každú minútu v rámci všetkých Mining Blockov vyberie jednu Bitcoin 
 
 ![Bloky](/screenshoty/blockchain.png)
 
+## Využitie Bitcoinov
 
+Modifikácia neponúka žiadny spôsob, ktorým by užívatelia mohli Bitcoiny minúť (napríklad v rámci nejakého obchodu). Hlavne z toho dôvodu, že by to bolo problematické na implementáciu. Avšak modifikácia do hry pridáva ekosystém, ktorý hráči môžu využiť na obchodovanie medzi sebou. 
