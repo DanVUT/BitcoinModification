@@ -32,7 +32,6 @@ Modifikácia do hry pridáva 3 použiteľné bloky. Každý poskytuje iné grafi
 * Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
 
 ![Bloky](/screenshoty/blocks.png)
-Format: ![Alt Text](url)
 
 Tieto bloky je možné vyrobiť nasledujúcimi výrobnými receptami:
 
@@ -51,18 +50,25 @@ Alebo ich je možné vyvolať administrátorskými príkazmi:
 Generovanie privátneho kľúča a Bitcoin Adresy sa vykonáva pomocou Bitcoin Wallet Blocku kliknutím na tlačítko "New Bitcoin Key Pair". To vygeneruje predmet "Bitcoin Key Pair", ktorý má v sebe uložený
 privátny kľúč a Bitcoin Adresu. Tieto kľúče je možné zobraziť ukázaním myšou na predmet Bitcoin Key Pair v inventárovom zobrazení, kedy sa informácie zobrazia ako Tooltip.
 
+![Bloky](/screenshoty/generovanie.png)
+
 ## Vytváranie Transakcií
 
 Vytváranie transakcií sa taktiež vykonáva pomocou Bitcoin Wallet Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím mu blok vypočíta zostatok Bitcoinov na danej Bitcoin Adrese. Do prvého textového poľa
 hráč napíše počet Bitcoinov, ktoré chce previesť a do druhého textového poľa napíše adresu príjemcu. Tlačítkom Send sa transakcia odošle na server.
+
+![Bloky](/screenshoty/posielanie.png)
 
 ## Ťažba Bitcoinov
 
 Ťažba sa iniciuje pomocou Mining Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím sa daný Mining Block zapojí do losovania o Bitcoiny, ktoré budú pripísané na Bitcoin Adresu vo vloženom predmete Bitcoin Key Pair.
 Server každú minútu v rámci všetkých Mining Blockov vyberie jednu Bitcoin Adresu, na ktorú pripíše Bitcoiny. Hráč môže vložiť diamanty do Mining Blocku, čím zvýši šancu, že server takýto blok vyberie.
 
+![Bloky](/screenshoty/mining.png)
 ## Prezeranie Blockchainu
 
 "Blockchain" (list transakcií) si hráči môžu prezerať pomocou Blockchain Explorer Blocku. Ten zobrazuje všetky transakcie a detaily o ich výstupoch ako odosielateľa, príjemcu, množstvo poslaných Bitcoinov a informáciu, či bol výstup už minutý alebo ešte nie.
+
+![Bloky](/screenshoty/blockchain.png)
 
 
