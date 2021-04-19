@@ -42,14 +42,14 @@ Alebo ich je možné vyvolať administrátorskými príkazmi:
 * /give {playername alebo @p} bitcoinmod:mining_block
 * /give {playername alebo @p} bitcoinmod:blockchain_block
 
-** Generovanie Bitcoin adries
+## Generovanie Bitcoin adries
 
 Generovanie privátneho kľúča a Bitcoin Adresy sa vykonáva pomocou Bitcoin Wallet Blocku kliknutím na tlačítko "New Bitcoin Key Pair". To vygeneruje predmet "Bitcoin Key Pair", ktorý má v sebe uložený
 privátny kľúč a Bitcoin Adresu. Tieto kľúče je možné zobraziť ukázaním myšou na predmet Bitcoin Key Pair v inventárovom zobrazení, kedy sa informácie zobrazia ako Tooltip.
 
-** Vytváranie Transakcií
+## Vytváranie Transakcií
 
 Vytváranie transakcií sa taktiež vykonáva pomocou Bitcoin Wallet Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím mu blok vypočíta zostatok Bitcoinov na danej Bitcoin Adrese. Do prvého textového poľa
 hráč napíše počet Bitcoinov, ktoré chce previesť a do druhého textového poľa napíše adresu príjemcu. Tlačítkom Send sa transakcia odošle na server.
 
-** Ťažba Bitcoinov
+## Ťažba Bitcoinov
