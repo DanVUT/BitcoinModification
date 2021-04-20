@@ -1,16 +1,16 @@
-# BitcoinModification
+# Bitcoin Modification SK
 
 Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre výučbové účely. Hráči môžu získať prehľad o Bitcoine jednoduchou a zábavnou formou bez nutnosti investovať skutočné peniaze.
 
-# Návod na inštaláciu pre herného klienta
+## Návod na inštaláciu pre herného klienta
 
 1. Stiahnúť inštalátor forge-1.15.2-31.2.0-installer.jar z priečinku modification v tomto repozitári
 2. Vybrať možnosť "install client" a nasmerovať inštalátor do priečinku s hernými súbormi. Predvolená cesta je C:\Users\\{username}\AppData\Roaming\\.minecraft
 3. V priečinku s hernými súbormi by sa mal objaviť priečinok mods. Predvolená cesta je C:\Users\\{username}\AppData\Roaming\\.minecraft\mods
 4. Nakopírovať do priečinku mods bitcoin_modification-1.0.jar z priečinku modification v tomto repozitári
 
-# Návod na inštaláciu dedikovaného servera (pre účely hry viacerých hráčov)
-### !!!K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ!!!
+## Návod na inštaláciu dedikovaného servera (pre účely hry viacerých hráčov)
+#### !!!K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ!!!
 
 1. Stiahnúť inštalátor forge-1.15.2-31.2.0-installer.jar z priečinku modification v tomto repozitári
 2. Vybrať možnosť "install server" a nasmerovať inštalátor do nejakého prázdneho priečinku
@@ -22,7 +22,7 @@ Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre 
 8. Spustiť run.bat z konzolového rozhrania a server by sa mal zapnúť
 
 
-# Hranie hry s modifikáciou
+## Hranie hry s modifikáciou
 
 Modifikácia do hry pridáva 3 použiteľné bloky. Každý z nich poskytuje iné grafické rozhranie a simuluje iný aspekt Bitcoinu:
 
@@ -44,29 +44,29 @@ Alebo ich je možné vyvolať administrátorskými príkazmi:
 * /give {playername alebo @p} bitcoinmod:blockchain_block
 
 
-## Generovanie Bitcoin adries
+### Generovanie Bitcoin adries
 
 Generovanie privátneho kľúča a Bitcoin Adresy sa vykonáva pomocou Bitcoin Wallet Blocku kliknutím na tlačítko "New Bitcoin Key Pair". To vygeneruje predmet "Bitcoin Key Pair", ktorý má v sebe uložený privátny kľúč a Bitcoin Adresu. Tieto kľúče je možné zobraziť ukázaním myšou na predmet Bitcoin Key Pair v inventárovom zobrazení, kedy sa informácie zobrazia ako Tooltip.
 
 ![Bloky](/screenshoty/generovanie.png)
 
-## Vytváranie Transakcií
+### Vytváranie Transakcií
 
 Vytváranie transakcií sa taktiež vykonáva pomocou Bitcoin Wallet Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím mu blok vypočíta zostatok Bitcoinov na danej Bitcoin Adrese. Do prvého textového poľa hráč napíše počet Bitcoinov, ktoré chce previesť a do druhého textového poľa napíše Bitcoin adresu príjemcu. Tlačítkom Send sa transakcia odošle na server.
 
 ![Bloky](/screenshoty/posielanie.png)
 
-## Ťažba Bitcoinov
+### Ťažba Bitcoinov
 
 Ťažba sa iniciuje pomocou Mining Blocku. Hráč doňho vloží predmet Bitcoin Key Pair, čím sa daný Mining Block zapojí do losovania o Bitcoiny, ktoré budú pripísané na Bitcoin Adresu vo vloženom predmete Bitcoin Key Pair. Server každú minútu v rámci všetkých Mining Blockov vyberie jednu Bitcoin Adresu, na ktorú pripíše Bitcoiny. Hráč môže vložiť diamanty do Mining Blocku, čím zvýši šancu, že server takýto blok vyberie.
 
 ![Bloky](/screenshoty/mining.png)
-## Prezeranie Blockchainu
+### Prezeranie Blockchainu
 
 "Blockchain" (list transakcií) si hráči môžu prezerať pomocou Blockchain Explorer Blocku. Ten zobrazuje všetky transakcie a detaily o ich výstupoch ako odosielateľa, príjemcu, množstvo poslaných Bitcoinov a informáciu, či bol výstup už minutý alebo ešte nie.
 
 ![Bloky](/screenshoty/blockchain.png)
 
-## Využitie Bitcoinov
+### Využitie Bitcoinov
 
 Modifikácia neponúka žiadny spôsob, ktorým by užívatelia mohli Bitcoiny minúť (napríklad v rámci nejakého obchodu). Hlavne z toho dôvodu, že by to bolo problematické na implementáciu. Avšak modifikácia do hry pridáva ekosystém, ktorý hráči môžu využiť na obchodovanie medzi sebou.
