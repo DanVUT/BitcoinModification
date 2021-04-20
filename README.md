@@ -121,18 +121,25 @@ If player has administation rights these blocks can be spawned by following comm
 
 Generation of Bitcoin Addresses is simple. In Bitcoin Wallet Block interface player clicks on "New Bitcoin Key Pair" button which will generate item Bitcoin Key Pair. This item contains information about private key and Bitcoin Address that has been generated from this private key. This information can be displayed by hovering mouse over this item in any inventory interface and private key with Bitcoin Address will display as Tooltip.
 
+![Bloky](/screenshoty/generation.png)
+
 ### Creating transactions
 
 Transactions are again created in Bitcoin Wallet Block interface. Into lower slot player can place Bitcoin Key Pair item. The GUI will calculate Bitcoin balance from all transactions for Bitcoin address in given Bitcoin Key Pair item. Player can write Bitcoin amount that he wants to send into first text box. Into second text box player can write recipient's Bitcoin Address. By clicking Send, player's application will send request about new transaction to server and it will check the request and approve (or disapprove) this new transaction.
+
+![Bloky](/screenshoty/transactions.png)
 
 ### Mining Bitcoins
 
 Mining is done via Mining Block. Into this Mining Block player can place Bitcoin Key Pair item. Server every minute picks one Bitcoin Address from all Mining Blocks which will recieve Bitcoins as reward in the form of Coinbase Transaction. Players can create as many Mining Blocks as they like. Moreover players can mine diamonds and insert them into Mining Block which will increase the chance of being picked by server for this Mining Block. The more diamonds player inserts into the block the higher chance for being picked this Mining Block has.
 
+![Bloky](/screenshoty/mining_eng.png)
+
 ### Browsing transactions
 
 Every player can browse all transactions that were created on the server via Blockchain Explorer Block. The GUI of this block provides list view of all transactions and details for these transactions. The detail for each transaction contains information like: sender of the transaction, reciever of the transaction, number of sent Bitcoins, status of the transaction outputs (unspent/spent), or information if transaction is Coinbase transaction (product of mining).
 
+![Bloky](/screenshoty/blockchain_eng.png)
 ### Use of Bitcoins
 
 For now there is no use for these Bitcoins from modification perspective. There is no shop or anything similar. But this modification adds Bitcoin ecosystem to the game so players can use it as currency between themselves.
