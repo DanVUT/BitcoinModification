@@ -10,7 +10,7 @@ Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre 
 4. Nakopírovať do priečinku mods bitcoin_modification-1.0.jar z priečinku modification v tomto repozitári
 
 ## Návod na inštaláciu dedikovaného servera (pre účely hry viacerých hráčov)
-#### !!!K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ!!!
+### !!!K SERVERU JE POTREBNÁ JAVA 8. S INÝMI VERZIAMI JAVA SA SERVER S NAJVACSOU PRAVDEPODOBNOSŤOU NESPUSTÍ!!!
 
 1. Stiahnúť inštalátor forge-1.15.2-31.2.0-installer.jar z priečinku modification v tomto repozitári
 2. Vybrať možnosť "install server" a nasmerovať inštalátor do nejakého prázdneho priečinku
@@ -70,3 +70,67 @@ Vytváranie transakcií sa taktiež vykonáva pomocou Bitcoin Wallet Blocku. Hr�
 ### Využitie Bitcoinov
 
 Modifikácia neponúka žiadny spôsob, ktorým by užívatelia mohli Bitcoiny minúť (napríklad v rámci nejakého obchodu). Hlavne z toho dôvodu, že by to bolo problematické na implementáciu. Avšak modifikácia do hry pridáva ekosystém, ktorý hráči môžu využiť na obchodovanie medzi sebou.
+
+
+# Bitcoin Modification ENG
+
+This modification adds Bitcoin cryptocurrency ecosystem into Minecraft for educational purposes. Players can try Bitcoin simple and fun way without investing real money into it.
+
+## Client installation instructions
+
+1. Download installer "forge-1.15.2-31.2.0-installer.jar" from directory "modification" from this repository
+2. Choose option "install client" and set installer into game files directory. Default path is C:\Users\\{username}\AppData\Roaming\\.minecraft
+3. In game's folder "mods" folder should appear. Default path is C:\Users\\{username}\AppData\Roaming\\.minecraft\mods
+4. Copy "bitcoin_modification-1.0.jar" from directory "modification" in this repository into "mods" folder
+
+## Server installation instructions
+### !!!JAVA 8 IS NEEDED TO RUN SERVER. OTHER VERSIONS WILL PROBABLY NOT WORK!!!
+
+1. Download installer "forge-1.15.2-31.2.0-installer.jar" from directory "modification" from this repository
+2. Choose option "install server" and set installer into a empty folder.
+3. Rename file "forge-1.15.2-31.2.0.jar" to "forgeserver.jar"
+4. Try to run forgeserver.jar. Nothing will run, but more files and folders should appear.
+5. Open eula.txt and change value from eula=false to eula=true
+6. Copy "bitcoin_modification-1.0.jar" from directory "modification" in this repository into "mods" folder in server's folder (if this directory was not created automatically create it manually)
+7. Create run.bat file in server folder with following command "java -Xmx2048M -Xms2048M -jar forgeserver.jar"
+8. Execute run.bat from command line
+
+### Playing game with modification
+
+Modification adds 3 usable blocks into the game:
+
+1. Bitcoin Wallet Block - simulates Bitcoin Wallet software behavior. Can generate key pairs (private key - Bitcoin Address) as Bitcoin Key Pair item, create transactions, show Bitcoin balance
+2. Mining Block - simulates Mining software bahavior. By placing this block and inserting Bitcoin Key Pair into it player has chance to recieve ("mine") Bitcoins.
+3. Blockchain Explorer Block - simulates Blockchain explorers behavior. Players can view all transactions that were created on that server
+
+These blocks can be crafted: 
+
+1. Bitcoin Wallet Block - combine 2x paper
+2. Mining Block - combine 2x wooden pickaxe
+3. Blockchain Explorer Block - combine 2x book
+
+If player has administation rights these blocks can be spawned by following commands:
+
+1. /give {playername or @p} bitcoinmod:wallet_block
+2. /give {playername or @p} bitcoinmod:mining_block
+3. /give {playername or @p} bitcoinmod:blockchain_block
+
+### Generation of Bitcoin Addresses
+
+Generation of Bitcoin Addresses is simple. In Bitcoin Wallet Block interface player clicks on "New Bitcoin Key Pair" button which will generate item Bitcoin Key Pair. This item contains information about private key and Bitcoin Address that has been generated from this private key. This information can be displayed by hovering mouse over this item in any inventory interface and private key with Bitcoin Address will display as Tooltip.
+
+### Creating transactions
+
+Transactions are again created in Bitcoin Wallet Block interface. Into lower slot player can place Bitcoin Key Pair item. The GUI will calculate Bitcoin balance from all transactions for Bitcoin address in given Bitcoin Key Pair item. Player can write Bitcoin amount that he wants to send into first text box. Into second text box player can write recipient's Bitcoin Address. By clicking Send, player's application will send request about new transaction to server and it will check the request and approve (or disapprove) this new transaction.
+
+### Mining Bitcoins
+
+Mining is done via Mining Block. Into this Mining Block player can place Bitcoin Key Pair item. Server every minute picks one Bitcoin Address from all Mining Blocks which will recieve Bitcoins as reward in the form of Coinbase Transaction. Players can create as many Mining Blocks as they like. Moreover players can mine diamonds and insert them into Mining Block which will increase the chance of being picked by server for this Mining Block. The more diamonds player inserts into the block the higher chance for being picked this Mining Block has.
+
+### Browsing transactions
+
+Every player can browse all transactions that were created on the server via Blockchain Explorer Block. The GUI of this block provides list view of all transactions and details for these transactions. The detail for each transaction contains information like: sender of the transaction, reciever of the transaction, number of sent Bitcoins, status of the transaction outputs (unspent/spent), or information if transaction is Coinbase transaction (product of mining).
+
+### Use of Bitcoins
+
+For now there is no use for these Bitcoins from modification perspective. There is no shop or anything similar. But this modification adds Bitcoin ecosystem to the game so players can use it as currency between themselves.
