@@ -95,7 +95,7 @@ This modification adds Bitcoin cryptocurrency ecosystem into Minecraft for educa
 7. Create run.bat file in server folder with following command "java -Xmx2048M -Xms2048M -jar forgeserver.jar"
 8. Execute run.bat from command line
 
-### Playing game with modification
+## Playing game with modification
 
 Modification adds 3 usable blocks into the game:
 
@@ -114,6 +114,8 @@ If player has administation rights these blocks can be spawned by following comm
 1. /give {playername or @p} bitcoinmod:wallet_block
 2. /give {playername or @p} bitcoinmod:mining_block
 3. /give {playername or @p} bitcoinmod:blockchain_block
+
+![Bloky](/screenshoty/blocks.png)
 
 ### Generation of Bitcoin Addresses
 
