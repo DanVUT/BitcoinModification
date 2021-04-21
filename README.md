@@ -1,6 +1,6 @@
 # Bitcoin Modification SK
 
-Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre výučbové účely. Hráči môžu získať prehľad o Bitcoine jednoduchou a zábavnou formou bez nutnosti investovať skutočné peniaze.
+Táto modifikácia pridáva do hry Minecraft ekosystém kryptomeny Bitcoinu pre účely výučby. Hráči môžu získať prehľad o Bitcoine jednoduchou a zábavnou formou bez nutnosti investovať skutočné peniaze.
 
 ## Návod na inštaláciu pre herného klienta
 
@@ -28,7 +28,7 @@ Modifikácia do hry pridáva 3 použiteľné bloky. Každý z nich poskytuje in�
 
 * Bitcoin Wallet Block - simuluje funkcionalitu Bitcoin Peňaženiek. Pomocou tohoto bloku sa generujú páry Privátny kľúč-Bitcoin adresa v podobe herného predmetu Bitcoin Key Pair, zobrazuje sa zostatok Bitcoinov a vytvárajú sa transakcie
 * Mining Block - simuluje funkcionalitu ťažobných softwarov. Umožňuje hráčom získať Bitcoiny z procesu ťaženia
-* Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
+* Blockchain Explorer Block - simuluje prehliadače Blockchainu. Hráči si môžu prezerať všetky transakcie, ktoré boli na serveri vytvorené.
 
 ![Bloky](/screenshoty/blocks.png)
 
@@ -142,4 +142,4 @@ Every player can browse all transactions that were created on the server via Blo
 ![Bloky](/screenshoty/blockchain_eng.png)
 ### Use of Bitcoins
 
-For now there is no use for these Bitcoins from modification perspective. There is no shop or anything similar. But this modification adds Bitcoin ecosystem to the game so players can use it as currency between themselves.
+For now modification does not implement any way how to spend Bitcoins - there is no shop or anything similar. But this modification adds Bitcoin ecosystem so players can use it as currency between themselves.
